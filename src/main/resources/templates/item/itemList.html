@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Item List!</h1>
+<table>
+    <thead>
+        <tr>
+            <th th:text="#{label.item.id}">Id</th>
+            <th th:text="#{label.item.itemName}">Name</th>
+            <th th:text="#{label.item.price}">Price</th>
+            <th th:text="#{label.item.quantity}">Stock_Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="item : ${items}">
+            <td><a href="item.html" th:href="@{|/items/${item.id}|}"  th:text="${item.id}">item id</a></td>
+            <td th:text="${item.itemName}">item name</td>
+            <td th:text="|${{item.price}} 원|">item price</td>
+            <td th:text="|${{item.stockQuantity}} 개|">item stock quantity</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

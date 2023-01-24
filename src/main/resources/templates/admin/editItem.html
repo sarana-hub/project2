@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .field-error {
+            border-color : #dc3545;
+            color : #dc3545;
+        }
+    </style>
+</head>
+<body>
+<h1>Edit Item!</h1>
+
+<form th:action th:object="${item}" method="post">
+    <div th:if="${#fields.hasGlobalErrors()}">
+        <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메세지</p>
+    </div>
+    <ul>
+        <li>
+            <label th:for="*{id}" th:text="#{label.item.id}">상품 ID</label>
+            <input type="text" th:field="*{id}" readonly>
+        </li>
+        <li>
+            <label th:for="*{itemName}" th:text="#{label.item.itemName}">상품 명</label>
+            <input type="text" th:field="*{itemName}" th:errorclass="field-error" class="" >
+            <div th:errors="*{itemName}" class="field-error">상품명 오류</div>
+        </li>
+        <li>
+            <label th:for="*{price}" th:text="#{label.item.price}">가격</label>
+            <input type="text" th:field="*{price}" th:errorclass="field-error" class="" >
+            <div th:errors="*{price}" class="field-error">가격 오류</div>
+        </li>
+        <li>
+            <label th:for="*{stockQuantity}" th:text="#{label.item.quantity}">수량</label>
+            <input type="text" th:field="*{stockQuantity}" th:errorclass="field-error" class="" >
+            <div th:errors="*{stockQuantity}" class="field-error">수량 오류</div>
+        </li>
+        <li>
+            <button type="submit" th:text="#{button.update}">수정</button>
+        </li>
+    </ul>
+</form>
+</body>
+</html>

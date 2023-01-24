@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:object="${member}">
+    <h2 th:text="|안녕하세요, ${customer.name} 님|">어서오세요, 회원님</h2>
+</div>
+<div>
+    <button type="button" onclick="location.href='/members/info'">개인 정보</button>
+</div>
+<div>
+    <button type="button" onclick="location.href='/orders'">주문목록</button>
+</div>
+<div>
+    <button type="button" onclick="location.href='/items'">상품목록</button>
+</div>
+
+<div>
+    <form th:action="@{/login/logout}" method="post">
+        <button type="submit">로그아웃</button>
+    </form>
+</div>
+</body>
+</html>

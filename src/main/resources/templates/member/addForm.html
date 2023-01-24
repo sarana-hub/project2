@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .field-error {
+            border-color : #dc3545;
+            color : #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <h2>회원가입</h2>
+    <form th:action th:object="${member}" method="post">
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전역 오류 메세지</p>
+        </div>
+        <div>
+            <label for="loginId">아이디</label>
+            <input type="text" id="loginId" th:field="*{loginId}" th:errorclass="field-error" placeholder="아이디를 입력해주세요">
+            <div th:errors="*{loginId}" class="field-error">아이디 오류</div>
+        </div>
+        <div>
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" th:field="*{password}" th:errorclass="field-error">
+            <div th:errors="*{password}" class="field-error">비밀번호 오류</div>
+        </div>
+        <div>
+            <label for="name">이름</label>
+            <input type="text" id="name" th:field="*{name}" th:errorclass="field-error">
+            <div th:errors="*{name}" class="field-error">이름 오류</div>
+        </div>
+        <br>
+        <div>
+            <label for="address">주소</label>
+            <div id="address">
+                <div>
+                    <label for="city">도시</label>
+                    <input type="text" id="city" th:field="*{city}" th:errorclass="field-error" placeholder="예) 서울">
+                    <div th:errors="*{city}" class="field-error">도시명 오류</div>
+                </div>
+                <div>
+                    <label for="street">도로명</label>
+                    <input type="text" id="street" th:field="*{street}" th:errorclass="field-error" placeholder="ex) ~로 ~길 ~동 ~호">
+                    <div th:errors="*{street}" class="field-error">도로명 오류</div>
+                </div>
+                <div>
+                    <label for="zipcode">우편번호</label>
+                    <input type="text" id="zipcode" th:field="*{zipcode}" th:errorclass="field-error" placeholder="예) 12345">
+                    <div th:errors="*{zipcode}" class="field-error">우편번호 오류</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit">회원가입</button>
+            <button type="button" onclick="location.href='/'">취소</button>
+        </div>
+    </form>
+</body>
+</html>
