@@ -2,26 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
 </head>
 <body>
-<h1>User Detail!</h1>
-<h2 th:if="${param.status}" th:text="'수정 완료'"></h2>
-<div>
-    <p th:text="|회원 등급 : ${customer.role}|">customer role</p>
+<div class="container">
+    <div class="py-5 text-center">
+        <h1>User Detail!</h1>
+    </div>
+
+    <h2 th:if="${param.status}" th:text="'수정 완료'"></h2>
+
+    <div>
+        <p th:text="|회원 등급 : ${customer.role}|">customer role</p>
+    </div>
+    <div>
+        <p th:text="|회원 명 : ${customer.name}|">customer name</p>
+    </div>
+    <div>
+        <p th:text="|주소 : ${customer.address.city} ${customer.address.street} ${customer.address.zipcode}|">customer address</p>
+    </div>
+
+    <div class="row">
+        <div class="col">
+    <form action="/members/address/editForm" method="post">
+        <input class="form-control" type="hidden" name="city" th:value="${customer.address.city}">
+        <input class="form-control" type="hidden" name="street" th:value="${customer.address.street}">
+        <input class="form-control" type="hidden" name="zipcode" th:value="${customer.address.zipcode}">
+        <button type="submit">주소 수정</button>
+    </form>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg" type="button" onclick="location.href='/'">목록으로</button>
+        </div>
+    </div>
 </div>
-<div>
-    <p th:text="|회원 명 : ${customer.name}|">customer name</p>
-</div>
-<div>
-    <p th:text="|주소 : ${customer.address.city} ${customer.address.street} ${customer.address.zipcode}|">customer address</p>
-</div>
-<form action="/members/address/editForm" method="post">
-    <input type="hidden" name="city" th:value="${customer.address.city}">
-    <input type="hidden" name="street" th:value="${customer.address.street}">
-    <input type="hidden" name="zipcode" th:value="${customer.address.zipcode}">
-    <button type="submit">주소 수정</button>
-</form>
-<button type="button" onclick="location.href='/'">목록으로</button>
 </body>
 </html>

@@ -2,24 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
+        .container {
+            max-width: 560px;
+        }
         .field-error {
-            border-color : #dc3545;
-            color : #dc3545;
+            border-color: #dc3545;
+            color: #dc3545;
         }
     </style>
 </head>
 <body>
-<h1>Add Item!!</h1>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h1>Add Item</h1>
+    </div>
+
 <form th:action th:object="${item}" method="post" enctype="multipart/form-data">
     <div th:if="${#fields.hasGlobalErrors()}">
         <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메세지</p>
     </div>
     <ul>
-        <li>
+        <div>
             <label for="shop" th:text="#{label.item.shop}">매장 명</label>
-            <input type="text" id="shop" th:field="*{shop}" th:errorclass="field-error" class="" placeholder="매장 명을 입력해주세요">
+            <input type="text" id="shop" th:field="*{shop}" th:errorclass="field-error" class="form-control" placeholder="매장 명을 입력해주세요">
             <div th:errors="*{shop}" class="field-error">상품명 오류</div>
             <!--<select name="shop" id="shop" class="form-control">
                 <option value="shop">매장명 선택</option>
@@ -27,33 +37,38 @@
                         th:value="${member.id}"
                         th:text="${member.shop}" />
             </select>-->
-        </li>
+        </div>
 
-        <li>
+        <div>
             <label for="itemName" th:text="#{label.item.itemName}">상품 명</label>
-            <input type="text" id="itemName" th:field="*{itemName}" th:errorclass="field-error" class="" placeholder="상품 명을 입력해주세요">
+            <input type="text" id="itemName" th:field="*{itemName}" th:errorclass="field-error" class="form-control" placeholder="상품 명을 입력해주세요">
             <div th:errors="*{itemName}" class="field-error">상품명 오류</div>
-        </li>
+        </div>
 
-        <li>
+        <div>
             <label>이미지 파일들
                 <input type="file" id="imageFiles" multiple="multiple" th:field="*{imageFiles}" class="form-control">
             </label>
-        </li>
+        </div>
 
-        <li>
+        <div>
             <label for="price" th:text="#{label.item.price}">가격</label>
-            <input type="text" id="price" th:field="*{price}" th:errorclass="field-error" class="" placeholder="가격을 입력해주세요">
+            <input type="text" id="price" th:field="*{price}" th:errorclass="field-error" class="form-control" placeholder="가격을 입력해주세요">
             <div th:errors="*{price}" class="field-error">가격 오류</div>
-        </li>
-        <li>
+        </div>
+        <div>
             <label for="stockQuantity" th:text="#{label.item.quantity}">수량</label>
-            <input type="text" id="stockQuantity" th:field="*{stockQuantity}" th:errorclass="field-error" class="" placeholder="수량을 입력해주세요">
+            <input type="text" id="stockQuantity" th:field="*{stockQuantity}" th:errorclass="field-error" class="form-control" placeholder="수량을 입력해주세요">
             <div th:errors="*{stockQuantity}" class="field-error">수량 오류</div>
-        </li>
-        <li>
-            <button type="submit" th:text="#{button.save}">저장</button>
-        </li>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg" type="submit" th:text="#{button.save}">저장</button>
+            </div>
+        </div>
     </ul>
 </form>
 </body>
