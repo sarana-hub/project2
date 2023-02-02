@@ -13,7 +13,7 @@
 <body>
 <h1>Edit Item!</h1>
 
-<form th:action th:object="${item}" method="post">
+<form th:action th:object="${item}" method="post" enctype="multipart/form-data">
     <div th:if="${#fields.hasGlobalErrors()}">
         <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메세지</p>
     </div>
@@ -22,10 +22,31 @@
             <label th:for="*{id}" th:text="#{label.item.id}">상품 ID</label>
             <input type="text" th:field="*{id}" readonly>
         </li>
+
+        <li>
+            <label th:for="*{shop}" th:text="#{label.item.shop}">매장 명</label>
+            <input type="text" th:field="*{shop}" th:errorclass="field-error" class="" >
+            <div th:errors="*{shop}" class="field-error">매장 명 오류</div>
+            <!--<select name="" id="member" class="form-control">
+                <option value="shop">회원선택</option>
+                <option th:each="member : ${members}"
+                        th:value="${member.id}"
+                        th:text="${member.name}" />
+            </select>-->
+        </li>
+
         <li>
             <label th:for="*{itemName}" th:text="#{label.item.itemName}">상품 명</label>
             <input type="text" th:field="*{itemName}" th:errorclass="field-error" class="" >
             <div th:errors="*{itemName}" class="field-error">상품명 오류</div>
+        </li>
+
+        <li>
+            <label>이미지 파일들
+                <img th:each="imageFile : ${item.imageFiles}"
+                     th:src="|/images/${imageFile.getStoreFileName()}|" width="100" height="100"/>
+                <input type="file" multiple="multiple" id="imageFiles" name="imageFiles" class="form-control" th:value="${item.imageFiles}">
+            </label>
         </li>
         <li>
             <label th:for="*{price}" th:text="#{label.item.price}">가격</label>

@@ -12,16 +12,35 @@
 </head>
 <body>
 <h1>Add Item!!</h1>
-<form th:action th:object="${item}" method="post">
+<form th:action th:object="${item}" method="post" enctype="multipart/form-data">
     <div th:if="${#fields.hasGlobalErrors()}">
         <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메세지</p>
     </div>
     <ul>
         <li>
+            <label for="shop" th:text="#{label.item.shop}">매장 명</label>
+            <input type="text" id="shop" th:field="*{shop}" th:errorclass="field-error" class="" placeholder="매장 명을 입력해주세요">
+            <div th:errors="*{shop}" class="field-error">상품명 오류</div>
+            <!--<select name="shop" id="shop" class="form-control">
+                <option value="shop">매장명 선택</option>
+                <option th:each="member : ${members}"
+                        th:value="${member.id}"
+                        th:text="${member.shop}" />
+            </select>-->
+        </li>
+
+        <li>
             <label for="itemName" th:text="#{label.item.itemName}">상품 명</label>
             <input type="text" id="itemName" th:field="*{itemName}" th:errorclass="field-error" class="" placeholder="상품 명을 입력해주세요">
             <div th:errors="*{itemName}" class="field-error">상품명 오류</div>
         </li>
+
+        <li>
+            <label>이미지 파일들
+                <input type="file" id="imageFiles" multiple="multiple" th:field="*{imageFiles}" class="form-control">
+            </label>
+        </li>
+
         <li>
             <label for="price" th:text="#{label.item.price}">가격</label>
             <input type="text" id="price" th:field="*{price}" th:errorclass="field-error" class="" placeholder="가격을 입력해주세요">

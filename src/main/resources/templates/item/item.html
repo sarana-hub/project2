@@ -7,6 +7,14 @@
 <body>
     <h1>Item Detail!</h1>
     <h2 th:if="${param.status}" th:text="'저장 완료'"></h2>
+
+    <div>
+        <img th:each="imageFile : ${item.imageFiles}" th:src="|/images/${imageFile.getStoreFileName()}|" width="300" height="300"/>
+    </div>
+    <div>
+        <p th:text="|매장 명 : ${item.shop}|">item shop</p>
+    </div>
+
     <div>
         <p th:text="|아이템 ID : ${item.id}|">item id</p>
     </div>

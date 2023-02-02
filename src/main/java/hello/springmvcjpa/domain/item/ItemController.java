@@ -1,20 +1,22 @@
 package hello.springmvcjpa.domain.item;
 
+import hello.springmvcjpa.domain.file.FileStore;
 import hello.springmvcjpa.web.item.ItemForm;
 import hello.springmvcjpa.web.item.ItemSaveForm;
 import hello.springmvcjpa.web.item.ItemUpdateForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,16 +26,18 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final FileStore fileStore;
 
     /**
-     * 아이템 전체 조회
+     * 아이템 전체 조회 -상품 목록
      */
     @GetMapping("/items")
     public String items(Model model) {
         List<Item> items = itemService.findAll();
         List<ItemForm> forms = new ArrayList<>();
         for (Item item : items) {
-            ItemForm form = new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity());
+            ItemForm form= new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
+                    item.getShop(), item.getImageFiles());
             forms.add(form);
         }
         model.addAttribute("items", forms);
@@ -48,22 +52,27 @@ public class ItemController {
     public String item(@PathVariable("itemId") Long itemId, Model model) {
         log.info("itemId = {}", itemId);
         Item item = itemService.findById(itemId);
-        ItemForm form = new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity());
+        ItemForm form = new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
+                item.getShop(), item.getImageFiles());
         model.addAttribute("item", form);
         return "item/item";
     }
 
     /**
-     * 관리자 아이템 전체 조회
+     * 점주 아이템 전체 조회
      */
     @GetMapping("/admin/items")
     public String adminItems(Model model) {
+
         List<Item> items = itemService.findAll();
         List<ItemForm> forms = new ArrayList<>();
+
         for (Item item : items) {
-            ItemForm form = new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity());
+            ItemForm form = new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
+                    item.getShop(), item.getImageFiles());
             forms.add(form);
         }
+
         model.addAttribute("items", forms);
         return "admin/itemList";
     }
@@ -71,7 +80,7 @@ public class ItemController {
 
 
     /**
-     * 관리자 아이템 등록 폼
+     * 점주 아이템 등록 폼
      */
     @GetMapping("/admin/items/add")
     public String addForm(Model model) {
@@ -80,10 +89,13 @@ public class ItemController {
     }
 
     /**
-     * 관리자 아이템 등록
+     * 점주 아이템 등록
      */
     @PostMapping("/admin/items/add")
-    public String add(@Validated @ModelAttribute("item") ItemSaveForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String add(@Validated @ModelAttribute("item") ItemSaveForm form, BindingResult bindingResult,
+                      RedirectAttributes redirectAttributes) throws IOException {
+
+        List<UploadFile> storeImageFiles = fileStore.storeFiles(form.getImageFiles());
 
         if (form.getPrice() != null && form.getStockQuantity() != null) {
             int resultPrice = form.getPrice() * form.getStockQuantity();
@@ -98,7 +110,8 @@ public class ItemController {
             return "admin/addForm";
         }
 
-        Item item = new Item(form.getItemName(), form.getPrice(), form.getStockQuantity());
+        Item item = new Item(form.getItemName(), form.getPrice(), form.getStockQuantity(),
+                form.getShop(), storeImageFiles);
 
         Long itemId = itemService.save(item);
         redirectAttributes.addAttribute("itemId", itemId);
@@ -106,8 +119,14 @@ public class ItemController {
         return "redirect:/admin/items";
     }
 
+    @ResponseBody
+    @GetMapping("/images/{filename}")
+    public Resource downloadImage(@PathVariable String filename) throws MalformedURLException {
+        return new UrlResource("file:" + fileStore.getFullPath(filename));
+    }
+
     /**
-     * 관리자 아이템 수정 폼
+     * 점주 아이템 수정 폼
      */
     @GetMapping("/admin/items/{itemId}/edit")
     public String editForm(@PathVariable("itemId") Long itemId, Model model) {
@@ -117,13 +136,15 @@ public class ItemController {
     }
 
     /**
-     * 관리자 아이템 수정
+     * 점주 아이템 수정
      */
     @PostMapping("/admin/items/{itemId}/edit")
     public String edit(@PathVariable("itemId") Long itemId,
                        @Validated @ModelAttribute("item") ItemUpdateForm form,
                        BindingResult bindingResult,
-                       RedirectAttributes redirectAttributes) {
+                       RedirectAttributes redirectAttributes) throws IOException {
+
+        List<UploadFile> storeImageFiles = fileStore.storeFiles(form.getImageFiles());
 
         if (form.getPrice() != null && form.getStockQuantity() != null) {
             int resultPrice = form.getPrice() * form.getStockQuantity();
@@ -137,7 +158,16 @@ public class ItemController {
             return "admin/editItem";
         }
 
-        Item item = new Item(form.getId(), form.getItemName(), form.getPrice(), form.getStockQuantity());
+        /*Item item = new Item(form.getId(), form.getItemName(), form.getPrice(), form.getStockQuantity(),
+                form.getShop(), form.getImageFiles());*/
+        Item item = itemService.findById(itemId);
+        item.setShop(form.getShop());
+        item.setItemName(form.getItemName());
+        item.setPrice(form.getPrice());
+        item.setStockQuantity(form.getStockQuantity());
+        if(!storeImageFiles.isEmpty()) {
+            item.setImageFiles(storeImageFiles);
+        }
 
         itemService.update(itemId, item);
 //        redirectAttributes.addAttribute("itemId", itemId);

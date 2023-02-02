@@ -60,8 +60,9 @@ public class InitDb {
             String name = "test_init_item_1";
             int price = 1000000;
             int stockQuantity = 100;
+            String shop="cafe12";
 
-            Item item = new Item(name, price, stockQuantity);
+            Item item = new Item(name, price, stockQuantity, shop, null);
 
             em.persist(item);
         }
@@ -70,8 +71,9 @@ public class InitDb {
             String name = "test_init_item_2";
             int price = 20000;
             int stockQuantity = 10;
+            String shop="king";
 
-            Item item = new Item(name, price, stockQuantity);
+            Item item = new Item(name, price, stockQuantity, shop, null);
 
             em.persist(item);
         }
