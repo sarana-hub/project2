@@ -1,5 +1,6 @@
 package hello.springmvcjpa.web.member;
 
+import hello.springmvcjpa.domain.AccessRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,11 @@ public class MemberSaveForm {
 
     @NotEmpty
     private String password;
+
+    @NotEmpty
+    private String phone;
+
+    private AccessRole role;
 
     /*Address*/
     @NotEmpty

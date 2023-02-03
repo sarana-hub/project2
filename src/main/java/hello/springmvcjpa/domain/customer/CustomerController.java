@@ -44,7 +44,7 @@ public class CustomerController {
         }
 
         Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
-        Customer customer = new Customer(form.getLoginId(),form.getPassword(), form.getName(), AccessRole.USER, address);
+        Customer customer = new Customer(form.getLoginId(),form.getPassword(), form.getName(), form.getPhone(), AccessRole.USER, address);
         customerService.save(customer);
 
         return "redirect:/";

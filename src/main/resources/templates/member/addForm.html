@@ -42,6 +42,13 @@
             <input type="text" id="name" th:field="*{name}" class="form-control" th:errorclass="field-error">
             <div th:errors="*{name}" class="field-error">이름 오류</div>
         </div>
+
+        <div>
+            <label for="phone">전화번호</label>
+            <input type="tel" id="phone" th:field="*{phone}" class="form-control" th:errorclass="field-error"
+                   pattern="[0-9]{3}[0-9]{4}[0-9]{4}">
+            <div th:errors="*{phone}" class="field-error">번호 오류</div>
+        </div>
         <br>
         <div>
             <label for="address">주소</label>
