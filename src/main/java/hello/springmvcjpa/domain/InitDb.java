@@ -39,9 +39,9 @@ public class InitDb {
 
         public void dbInit1() {
 
-            String loginId = "admin";
+            String loginId = "tt";
             String name1 = "점주";
-            String password = "admin!";
+            String password = "1111";
             AccessRole role = AccessRole.OWNER;
             Address address = new Address("city", "street", 1111);
 
@@ -57,7 +57,7 @@ public class InitDb {
             Customer customer2 = new Customer(loginId2, password2, name2, "01011112222", role2, address2);
             em.persist(customer2);
 
-            String name = "test_init_item_1";
+            String name = "item_1";
             int price = 1000000;
             int stockQuantity = 100;
             String shop="cafe12";
@@ -68,7 +68,7 @@ public class InitDb {
         }
         public void dbInit2() {
 
-            String name = "test_init_item_2";
+            String name = "item_2";
             int price = 20000;
             int stockQuantity = 10;
             String shop="king";
