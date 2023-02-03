@@ -24,6 +24,6 @@ public class WebConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(new RoleCheckInterceptor())
                 .order(3)
-                .addPathPatterns("/admin/**");
+                .addPathPatterns("/owner/**");
     }
 }

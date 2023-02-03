@@ -61,7 +61,7 @@ public class ItemController {
     /**
      * 점주 아이템 전체 조회
      */
-    @GetMapping("/admin/items")
+    @GetMapping("/owner/items")
     public String adminItems(Model model) {
 
         List<Item> items = itemService.findAll();
@@ -74,7 +74,7 @@ public class ItemController {
         }
 
         model.addAttribute("items", forms);
-        return "admin/itemList";
+        return "owner/itemList";
     }
 
 
@@ -82,16 +82,16 @@ public class ItemController {
     /**
      * 점주 아이템 등록 폼
      */
-    @GetMapping("/admin/items/add")
+    @GetMapping("/owner/items/add")
     public String addForm(Model model) {
         model.addAttribute("item", new ItemSaveForm());
-        return "admin/addForm";
+        return "owner/addForm";
     }
 
     /**
      * 점주 아이템 등록
      */
-    @PostMapping("/admin/items/add")
+    @PostMapping("/owner/items/add")
     public String add(@Validated @ModelAttribute("item") ItemSaveForm form, BindingResult bindingResult,
                       RedirectAttributes redirectAttributes) throws IOException {
 
@@ -107,7 +107,7 @@ public class ItemController {
 
         if (bindingResult.hasErrors()) {
             log.info("errors ={}", bindingResult.toString());
-            return "admin/addForm";
+            return "owner/addForm";
         }
 
         Item item = new Item(form.getItemName(), form.getPrice(), form.getStockQuantity(),
@@ -116,7 +116,7 @@ public class ItemController {
         Long itemId = itemService.save(item);
         redirectAttributes.addAttribute("itemId", itemId);
         redirectAttributes.addAttribute("status", true);
-        return "redirect:/admin/items";
+        return "redirect:/owner/items";
     }
 
     @ResponseBody
@@ -128,17 +128,17 @@ public class ItemController {
     /**
      * 점주 아이템 수정 폼
      */
-    @GetMapping("/admin/items/{itemId}/edit")
+    @GetMapping("/owner/items/{itemId}/edit")
     public String editForm(@PathVariable("itemId") Long itemId, Model model) {
         Item item = itemService.findById(itemId);
         model.addAttribute("item", item);
-        return "admin/editItem";
+        return "owner/editItem";
     }
 
     /**
      * 점주 아이템 수정
      */
-    @PostMapping("/admin/items/{itemId}/edit")
+    @PostMapping("/owner/items/{itemId}/edit")
     public String edit(@PathVariable("itemId") Long itemId,
                        @Validated @ModelAttribute("item") ItemUpdateForm form,
                        BindingResult bindingResult,
@@ -155,7 +155,7 @@ public class ItemController {
 
         if (bindingResult.hasErrors()) {
             log.info("errors ={}", bindingResult.toString());
-            return "admin/editItem";
+            return "owner/editItem";
         }
 
         /*Item item = new Item(form.getId(), form.getItemName(), form.getPrice(), form.getStockQuantity(),
@@ -172,6 +172,6 @@ public class ItemController {
         itemService.update(itemId, item);
 //        redirectAttributes.addAttribute("itemId", itemId);
 
-        return "redirect:/admin/items";
+        return "redirect:/owner/items";
     }
 }

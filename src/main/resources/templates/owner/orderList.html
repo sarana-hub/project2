@@ -40,7 +40,7 @@
 function cancel(id) {
 var form = document.createElement("form");
 form.setAttribute("method", "post");
-form.setAttribute("action", "/admin/orders/" + id + "/cancel");
+form.setAttribute("action", "/owner/orders/" + id + "/cancel");
 document.body.appendChild(form);
 form.submit();
 }

@@ -32,17 +32,17 @@ public class OrderController {
         return "redirect:/items";
     }
 
-    @GetMapping("/admin/orders")
+    @GetMapping("/owner/orders")
     public String orderList(Model model) {
         List<Order> orders = orderService.findOrders();
         model.addAttribute("orders", orders);
-        return "admin/orderList";
+        return "owner/orderList";
     }
 
-    @PostMapping("/admin/orders/{orderId}/cancel")
+    @PostMapping("/owner/orders/{orderId}/cancel")
     public String cancel(@PathVariable("orderId") Long orderId) {
         orderService.cancel(orderId);
-        return "redirect:/admin/orders";
+        return "redirect:/owner/orders";
     }
 
     @GetMapping("/orders")
