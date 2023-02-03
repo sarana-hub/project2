@@ -33,15 +33,18 @@
         </thead>
         <tbody>
         <tr th:each="item : ${items}">
-        <td>
-            <img th:each="imageFile : ${item.imageFiles}" th:src="|/images/${imageFile.getStoreFileName()}|"
-                 width="100" height="100"/>
-        </td>
-        <td><a href="item.html" th:href="@{/owner/items/{itemId}/edit(itemId=${item.id})}"  th:text="${item.id}">item id</a></td>
-        <td th:text="${item.shop}">매장명</a></td>
-        <td th:text="${item.itemName}">item name</td>
-        <td th:text="|${{item.price}} 원|">item price</td>
-        <td th:text="|${{item.stockQuantity}} 개|">item stock quantity</td>
+            <td>
+                <img th:each="imageFile : ${item.imageFiles}" th:src="|/images/${imageFile.getStoreFileName()}|"
+                     width="100" height="100"/>
+            </td>
+
+            <td th:text="${item.shop}">매장명</td>
+            <td><a href="item.html" th:href="@{/owner/items/{itemId}/edit(itemId=${item.id})}"  th:text="${item.id}">item id</a></td>
+
+            <td th:text="${item.itemName}">item name</td>
+            <td th:text="|${{item.price}} 원|">item price</td>
+            <td th:text="|${{item.stockQuantity}} 개|">item stock quantity</td>
+
         </tr>
         </tbody>
     </table>
