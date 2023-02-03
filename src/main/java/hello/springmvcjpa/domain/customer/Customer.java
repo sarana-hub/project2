@@ -42,7 +42,7 @@ public class Customer {
     @Enumerated
     private AccessRole role; //점주, 고객
 
-    @Embedded
+    //@Embedded
     private Address address;
 
 

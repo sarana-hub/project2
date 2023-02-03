@@ -29,7 +29,8 @@ public class OrderService {
         Customer customer=customerRepository.findById(customerId);
         Item item = itemRepository.findById(itemId);
 
-        Delivery delivery = new Delivery(DeliveryStatus.READY, customer.getAddress());
+        //Delivery delivery = new Delivery(DeliveryStatus.READY, customer.getAddress());
+        Delivery delivery = new Delivery(DeliveryStatus.READY, customer.getPhone());
 
         OrderItem orderItem = OrderItem.createOrderItem(item, count, item.getPrice());
 

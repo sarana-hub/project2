@@ -20,15 +20,17 @@ public class Delivery {
     @OneToOne(mappedBy = "delivery",fetch = FetchType.LAZY)
     private Order order;
 
+    /*@Embedded
+    private Address address;*/
     @Embedded
-    private Address address;
+    private String phone;
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus deliveryStatus;
 
-    public Delivery(DeliveryStatus deliveryStatus, Address address) {
+    public Delivery(DeliveryStatus deliveryStatus, String phone) {
         this.deliveryStatus = deliveryStatus;
-        this.address = address;
+        this.phone = phone;
     }
 
     public void setOrder(Order order) {
