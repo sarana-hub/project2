@@ -45,6 +45,12 @@ public class OrderController {
         return "redirect:/owner/orders";
     }
 
+    @PostMapping("/owner/orders/{orderId}/comp")
+    public String comp(@PathVariable("orderId") Long orderId) {
+        orderService.comp(orderId);
+        return "redirect:/owner/orders";
+    }
+
     @GetMapping("/orders")
     public String orders(HttpServletRequest request, Model model) {
 

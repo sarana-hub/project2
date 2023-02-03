@@ -84,4 +84,11 @@ public class Order {
             orderItem.cancel();
         }
     }
+
+    public void comp() {
+        if (orderStatus == OrderStatus.CANCEL) {
+            throw new IllegalStateException("취소된 주문입니다");
+        }
+        delivery.setDeliveryStatus(DeliveryStatus.COMP);
+    }
 }

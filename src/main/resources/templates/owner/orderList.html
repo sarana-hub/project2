@@ -12,7 +12,9 @@
                 <th>주문가격</th>
                 <th>주문수량</th>
                 <th>주문상태</th>
+                <th>order/cancel</th>
                 <th>발송상태</th>
+                <th>ready/comp</th>
                 <th>주문일시</th>
                 <th></th>
             </tr>
@@ -24,20 +26,22 @@
                 <td th:text="${item.orderItems[0].item.itemName}"></td>
                 <td th:text="${{item.orderItems[0].orderPrice}}"></td>
                 <td th:text="${item.orderItems[0].count}"></td>
-                <td th:text="${item.orderStatus}"></td>
-                <td th:text="${item.delivery.deliveryStatus}"></td>
-                <td th:text="${{item.orderDate}}"></td>
 
+                <td th:text="${item.orderStatus}"></td>
                 <td>
                     <a th:if="${item.orderStatus.name() == 'ORDER'}" href="#"
                        th:href="'javascript:cancel('+${item.id}+')'"
                        class="btn btn-danger">CANCEL</a>
                 </td>
-                <!--<td>
-                    <a th:if="${item.orderStatus.name() == 'ORDER'}" href="#"
-                       th:href="'javascript:cancel('+${item.id}+')'"
+
+                <td th:text="${item.delivery.deliveryStatus}"></td>
+                <td>
+                    <a th:if="${item.delivery.deliveryStatus.name() == 'READY'}" href="#"
+                       th:href="'javascript:comp('+${item.id}+')'"
                        class="btn btn-danger">COMP</a>
-                </td>-->
+                </td>
+
+                <td th:text="${{item.orderDate}}"></td>
 
             </tr>
             </tbody>
@@ -50,6 +54,14 @@ function cancel(id) {
 var form = document.createElement("form");
 form.setAttribute("method", "post");
 form.setAttribute("action", "/owner/orders/" + id + "/cancel");
+document.body.appendChild(form);
+form.submit();
+}
+
+function comp(id) {
+var form = document.createElement("form");
+form.setAttribute("method", "post");
+form.setAttribute("action", "/owner/orders/" + id + "/comp");
 document.body.appendChild(form);
 form.submit();
 }

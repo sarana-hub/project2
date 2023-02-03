@@ -4,12 +4,14 @@ import hello.springmvcjpa.domain.Address;
 import hello.springmvcjpa.domain.order.Order;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
 @Entity
+@Setter
 public class Delivery {
 
     @Id

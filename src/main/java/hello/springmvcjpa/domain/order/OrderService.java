@@ -49,6 +49,12 @@ public class OrderService {
         findOrder.cancel();
     }
 
+    @Transactional
+    public void comp(Long orderId) {
+        Order findOrder = orderRepository.findById(orderId);
+        findOrder.comp();
+    }
+
     public List<Order> findPersonalOrders(Long customerId) {
         List<Order> orders = orderRepository.findOrderByMemberId(customerId);
         return orders;
