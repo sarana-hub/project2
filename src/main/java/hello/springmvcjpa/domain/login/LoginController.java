@@ -67,7 +67,7 @@ public class LoginController {
 
         log.info("redirectURL = {}", redirectURL);
 
-        if(customer.getRole() == AccessRole.ADMIN){
+        if(customer.getRole() == AccessRole.OWNER){
             return "redirect:/admin";
         }
 

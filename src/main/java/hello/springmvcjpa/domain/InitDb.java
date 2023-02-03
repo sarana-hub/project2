@@ -40,12 +40,12 @@ public class InitDb {
         public void dbInit1() {
 
             String loginId = "admin";
-            String name1 = "관리자";
+            String name1 = "점주";
             String password = "admin!";
-            AccessRole role = AccessRole.ADMIN;
+            AccessRole role = AccessRole.OWNER;
             Address address = new Address("city", "street", 1111);
 
-            Customer customer=new Customer(loginId, password, name1, role, address);
+            Customer customer=new Customer(loginId, password, name1, "01012345678", role, address);
             em.persist(customer);
 
             String loginId2 = "user";
@@ -54,7 +54,7 @@ public class InitDb {
             AccessRole role2 = AccessRole.USER;
             Address address2 = new Address("city2", "street2", 2222);
 
-            Customer customer2 = new Customer(loginId2, password2, name2,  role2, address2);
+            Customer customer2 = new Customer(loginId2, password2, name2, "01011112222", role2, address2);
             em.persist(customer2);
 
             String name = "test_init_item_1";
