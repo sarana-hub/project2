@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<form th:action th:object="${Shop}" th:method="post">
+    <div>
+        <label for="shopName">음식점 이름</label>
+            <input type="text" id="shopName" th:field="*{shopName}" class="form-control">
+    </div>
+    <div>
+        <label for="pos">위치</label>
+        <input type="text" id="pos" th:field="*{pos}" class="form-control">
+    </div>
+    <div th:each="menu : ${shop.menuList}" class="form-check form-check-inline">
+        <input type="text" class="form-control" th:field="*{menuList}" th:value="${menu.menuName}"/>
+        <label th:for="${menu.menuName}" th:text="${menu.menuName}">메뉴 추가</label>
+    </div>
+</form>
+</body>
+</html>
