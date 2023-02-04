@@ -29,6 +29,10 @@ public class OrderItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_name")
+    private Shop shop;*/
+
     private int count;
     @NumberFormat(pattern = "###,###")
     private int orderPrice;

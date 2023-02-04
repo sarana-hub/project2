@@ -2,6 +2,7 @@ package hello.springmvcjpa.domain;
 
 import hello.springmvcjpa.domain.customer.Customer;
 import hello.springmvcjpa.domain.item.Item;
+import hello.springmvcjpa.domain.shop.Shop;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +45,7 @@ public class InitDb {
             String password = "1111";
             AccessRole role = AccessRole.OWNER;
             Address address = new Address("city", "street", 1111);
+            Shop shop=new Shop("cafe", "서울", null);
 
             Customer customer=new Customer(loginId, password, name1, "01012345678", role, address);
             em.persist(customer);
@@ -60,9 +62,10 @@ public class InitDb {
             String name = "item_1";
             int price = 1000000;
             int stockQuantity = 100;
-            String shop="cafe12";
+            String shop2="bhc";
+            //Shop shop2=new Shop("bhc", "경기", null);
 
-            Item item = new Item(name, price, stockQuantity, shop, null);
+            Item item = new Item(name, price, stockQuantity, shop2, null);
 
             em.persist(item);
         }
@@ -71,9 +74,10 @@ public class InitDb {
             String name = "item_2";
             int price = 20000;
             int stockQuantity = 10;
-            String shop="king";
+            String shop3="bing";
+            //Shop shop3=new Shop("king", "인천", null);
 
-            Item item = new Item(name, price, stockQuantity, shop, null);
+            Item item = new Item(name, price, stockQuantity, shop3, null);
 
             em.persist(item);
         }

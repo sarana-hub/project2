@@ -45,8 +45,7 @@ public class ItemApiController {
 
         List<UploadFile> storeImageFiles = fileStore.storeFiles(form.getImageFiles());
 
-        Item item = new Item(form.getItemName(), form.getPrice(), form.getStockQuantity(),
-                form.getShop(), storeImageFiles);
+        Item item = new Item(form.getItemName(), form.getPrice(), form.getStockQuantity(), form.getShop(), storeImageFiles);
         Long saveResult = itemService.save(item);
         SuccessForm successForm = new SuccessForm(item);
 

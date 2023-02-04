@@ -1,6 +1,8 @@
 package hello.springmvcjpa.domain.item;
 
 import hello.springmvcjpa.domain.file.FileStore;
+import hello.springmvcjpa.domain.shop.Shop;
+import hello.springmvcjpa.domain.shop.ShopService;
 import hello.springmvcjpa.web.item.ItemForm;
 import hello.springmvcjpa.web.item.ItemSaveForm;
 import hello.springmvcjpa.web.item.ItemUpdateForm;
@@ -26,6 +28,8 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final ShopService shopService;
+
     private final FileStore fileStore;
 
     /**
@@ -37,7 +41,7 @@ public class ItemController {
         List<ItemForm> forms = new ArrayList<>();
         for (Item item : items) {
             ItemForm form= new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
-                    item.getShop(), item.getImageFiles());
+                   item.getShop(), item.getImageFiles());
             forms.add(form);
         }
         model.addAttribute("items", forms);
@@ -84,6 +88,8 @@ public class ItemController {
      */
     @GetMapping("/owner/items/add")
     public String addForm(Model model) {
+        List<Shop> shops=shopService.findAll();
+        model.addAttribute("shops",shops);
         model.addAttribute("item", new ItemSaveForm());
         return "owner/addForm";
     }
@@ -92,8 +98,8 @@ public class ItemController {
      * 점주 아이템 등록
      */
     @PostMapping("/owner/items/add")
-    public String add(@Validated @ModelAttribute("item") ItemSaveForm form, BindingResult bindingResult,
-                      RedirectAttributes redirectAttributes) throws IOException {
+    public String add(@Validated @ModelAttribute("item") ItemSaveForm form,
+                      BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
 
         List<UploadFile> storeImageFiles = fileStore.storeFiles(form.getImageFiles());
 

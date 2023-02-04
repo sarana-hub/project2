@@ -32,6 +32,10 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id")
+    private Shop shop;*/
+
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 

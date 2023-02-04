@@ -1,12 +1,15 @@
 package hello.springmvcjpa.web.member;
 
 import hello.springmvcjpa.domain.AccessRole;
+import hello.springmvcjpa.domain.item.Item;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -26,6 +29,11 @@ public class MemberSaveForm {
     private String phone;
 
     private AccessRole role;
+
+    /*Shop*/
+    private String shopName;
+    private String pos;
+    private List<Item> items = new ArrayList<>();
 
     /*Address*/
     @NotEmpty

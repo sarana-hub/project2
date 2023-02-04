@@ -1,15 +1,13 @@
 package hello.springmvcjpa.web.item;
 
-import hello.springmvcjpa.domain.item.UploadFile;
+import hello.springmvcjpa.domain.shop.Shop;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -26,7 +24,7 @@ public class ItemSaveForm {
     @Max(9999)
     private Integer stockQuantity;
 
-    @NotBlank
+    //@NotBlank
     private String shop; //매장명
 
     private List<MultipartFile> imageFiles;

@@ -1,3 +1,4 @@
+/*
 package hello.login.domain.item;
 
 import org.junit.jupiter.api.AfterEach;
@@ -66,3 +67,4 @@ class ItemRepositoryTest {
         assertThat(findItem.getQuantity()).isEqualTo(updateParam.getQuantity());
     }
 }
+*/

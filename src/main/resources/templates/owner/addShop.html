@@ -15,6 +15,14 @@
     </style>
 </head>
 <body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h1>Add Shop</h1>
+    </div>
+
+    <!--
 <form th:action th:object="${Shop}" th:method="post">
     <div>
         <label for="shopName">가게 이름</label>
@@ -30,4 +38,42 @@
     </div>
 </form>
 </body>
+</html>-->
+
+    <form th:action th:object="${shop}" method="post">
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메세지</p>
+        </div>
+
+        <ul>
+            <div>
+                <label for="shopName" th:text="#{label.shop.shopName}">매장 명</label>
+                <input type="text" id="shopName" th:field="*{shopName}" th:errorclass="field-error" class="form-control" placeholder="매장 명을 입력해주세요">
+                <div th:errors="*{shopName}" class="field-error">매장 명 오류</div>
+            </div>
+
+            <div>
+                <label for="pos" th:text="#{label.shop.pos}">위치</label>
+                <input type="text" id="pos" th:field="*{pos}" th:errorclass="field-error" class="form-control" placeholder="위치을 입력해주세요">
+                <div th:errors="*{pos}" class="field-error">위치 오류</div>
+            </div>
+
+            <!--
+            <div th:each="item : ${shop.items}" class="form-check form-check-inline">
+                <input type="text" class="form-control" th:field="*{items}" th:value="${item.itemName}"/>
+                <label th:for="${item.itemName}" th:text="${item.itemName}">상품 등록</label>
+            </div>-->
+
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col">
+                    <button class="w-100 btn btn-secondary btn-lg" type="submit" th:text="#{button.save}">저장</button>
+                </div>
+            </div>
+        </ul>
+    </form>
+</body>
 </html>
+

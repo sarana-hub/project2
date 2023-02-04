@@ -1,6 +1,6 @@
 package hello.springmvcjpa.domain.item;
 
-import hello.springmvcjpa.domain.Address;
+import hello.springmvcjpa.domain.shop.Shop;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,9 +28,9 @@ public class Item {
 
     private Integer stockQuantity; //재고수량
 
-    private String shop; //매장명
-    /*@Embedded
-    private Shop shop; Address처럼*/
+    //@Embedded
+    //private Shop shop; //Address처럼
+    private String shop;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<UploadFile> imageFiles=new ArrayList<>();

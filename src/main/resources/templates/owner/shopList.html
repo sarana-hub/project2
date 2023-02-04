@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h1>Shop List</h1>
+    </div>
+
+    <div class="row">
+    <div class="col">
+        <button class="w-100 btn btn-secondary btn-lg"
+                type="button" onclick="location.href='/owner/items'">상품 관리 페이지</button>
+    </div>
+
+    <div class="col">
+        <button class="w-100 btn btn-secondary btn-lg"
+                type="button" onclick="location.href='/owner/orders'">주문 관리 페이지</button>
+    </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end" type="button" onclick="location.href='/owner/shops/add'" th:text="#{page.addShop}">가게 등록</button>
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{label.shop.id}">Id</th>
+                <th th:text="#{label.shop.shopName}">매장명</th>
+                <th th:text="#{label.shop.pos}">위치</th>
+                <th th:text="#{label.shop.items}">item 목록</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shop : ${shops}">
+
+                <td><a href="shop.html" th:text="${shop.id}">shop id</a></td>
+
+                <td th:text="${shop.shopName}">shop name</td>
+                <td th:text="${shop.pos}">shop pos</td>
+                <td th:each="item : ${shop.items}">item list</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

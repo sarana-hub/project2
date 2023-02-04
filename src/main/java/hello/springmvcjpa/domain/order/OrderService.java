@@ -66,8 +66,8 @@ public class OrderService {
         return orders;
     }
 
-    /*public List<Order> findShopOrders(Long shopId) {
+    public List<Order> findShopOrders(Long shopId) {
         List<Order> orders = orderRepository.findOrderByShop(shopId);
         return orders;
-    }*/
+    }
 }

@@ -29,14 +29,12 @@
     <ul>
         <div>
             <label for="shop" th:text="#{label.item.shop}">매장 명</label>
-            <input type="text" id="shop" th:field="*{shop}" th:errorclass="field-error" class="form-control" placeholder="매장 명을 입력해주세요">
-            <div th:errors="*{shop}" class="field-error">상품명 오류</div>
-            <!--<select name="shop" id="shop" class="form-control">
-                <option value="shop">매장명 선택</option>
-                <option th:each="member : ${members}"
-                        th:value="${member.id}"
-                        th:text="${member.shop}" />
-            </select>-->
+            <select id="shop" name="shop" class="form-control">
+                <option value="shop">매장 선택</option>
+                <option th:each="shop : ${shops}"
+                        th:value="${shop.shopName}"
+                        th:text="${shop.shopName}" />
+            </select>
         </div>
 
         <div>
