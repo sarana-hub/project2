@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,12 +29,27 @@ public class OrderController {
         return "redirect:/items";
     }
 
-    @GetMapping("/owner/orders")
+    /*@GetMapping("/owner/orders")
     public String orderList(Model model) {
         List<Order> orders = orderService.findOrders();
         model.addAttribute("orders", orders);
         return "owner/orderList";
+    }*/
+    @GetMapping("/owner/orders")  //주문 목록 검색
+    public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
+        List<Order> orders = orderService.findOrders(orderSearch);
+        model.addAttribute("orders", orders);
+        return "owner/orderList";
     }
+    /*@GetMapping("/owner/orders")
+    public String orderList(@PathVariable("shopId") Long shopId, Model model) {
+
+        List<Order> orders = orderService.findShopOrders(shopId);
+
+        model.addAttribute("orders", orders);
+
+        return "owner/orderList";
+    }*/
 
     @PostMapping("/owner/orders/{orderId}/cancel")
     public String cancel(@PathVariable("orderId") Long orderId) {
@@ -68,4 +80,6 @@ public class OrderController {
         orderService.cancel(orderId);
         return "redirect:/orders";
     }
+
+
 }

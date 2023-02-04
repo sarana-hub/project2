@@ -39,6 +39,12 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+    /** 주문 내역 검색 */
+    public List<Order> findOrders(OrderSearch orderSearch) {
+
+        return orderRepository.findAllByString(orderSearch);
+    }
+
     public List<Order> findOrders() {
         return orderRepository.findAll();
     }
@@ -59,4 +65,9 @@ public class OrderService {
         List<Order> orders = orderRepository.findOrderByMemberId(customerId);
         return orders;
     }
+
+    /*public List<Order> findShopOrders(Long shopId) {
+        List<Order> orders = orderRepository.findOrderByShop(shopId);
+        return orders;
+    }*/
 }
