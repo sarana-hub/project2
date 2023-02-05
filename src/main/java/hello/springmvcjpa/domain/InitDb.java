@@ -45,7 +45,7 @@ public class InitDb {
             String password = "1111";
             AccessRole role = AccessRole.OWNER;
             Address address = new Address("city", "street", 1111);
-            Shop shop=new Shop("cafe", "서울", null);
+            Shop shop=new Shop("cafe", "서울");
 
             Customer customer=new Customer(loginId, password, name1, "01012345678", role, address);
             em.persist(customer);

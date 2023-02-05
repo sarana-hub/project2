@@ -45,7 +45,6 @@ public class Customer {
     //@Embedded
     private Address address;
 
-    //private Shop shop;
 
     public Customer(String loginId, String password, String name, String phone, AccessRole role, Address address) {
         this.loginId = loginId;
@@ -54,7 +53,6 @@ public class Customer {
         this.phone = phone;
         this.role = role;
         this.address = address;
-        //this.shop = shop;
     }
 
 

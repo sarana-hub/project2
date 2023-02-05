@@ -2,6 +2,7 @@ package hello.springmvcjpa.domain.customer;
 
 import hello.springmvcjpa.domain.Address;
 import hello.springmvcjpa.domain.login.SessionConst;
+import hello.springmvcjpa.domain.shop.Shop;
 import hello.springmvcjpa.web.member.MemberSaveForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class CustomerController {
         }
 
         Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
-        //Shop shop=new Shop(form.getShopName(), form.getPos(), form.getItems());
+        Shop shop=new Shop(form.getShopName(), form.getPos());
         Customer customer = new Customer(form.getLoginId(),form.getPassword(), form.getName(), form.getPhone(), form.getRole(), address);
         customerService.save(customer);
 
