@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div th:replace="fragments/ownerHeader :: ownerHeader"/>
+
+    <div class="py-5 text-center">
+        <h1>Edit</h1>
+    </div>
+
+    <form th:action="@{/members/address/edit}" th:object="${address}" method="post">
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메세지</p>
+        </div>
+
+        <ul>
+            <div>
+                <label th:for="*{city}">CITY</label>
+                <input class="form-control" type="text" th:field="*{city}" th:errorclass="field-error">
+                <div th:errors="*{city}" class="field-error">도시명 오류</div>
+            </div>
+            <div>
+                <label th:for="*{street}">STREET</label>
+                <input class="form-control" type="text" th:field="*{street}" th:errorclass="field-error">
+                <div th:errors="*{street}" class="field-error">도로명 오류</div>
+            </div>
+            <div>
+                <label th:for="*{zipcode}">ZIPCODE</label>
+                <input class="form-control" type="text" th:field="*{zipcode}" th:errorclass="field-error">
+                <div th:errors="*{zipcode}" class="field-error">우편번호 오류</div>
+            </div>
+
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit" th:text="#{button.update}">수정</button>
+            </div>
+        </ul>
+
+    </form>
+
+    <div th:replace="fragments/footer :: footer"/>
+</div>
+</body>
+</html>

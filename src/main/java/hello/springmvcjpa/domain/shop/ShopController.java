@@ -1,5 +1,6 @@
 package hello.springmvcjpa.domain.shop;
 
+import hello.springmvcjpa.domain.Address;
 import hello.springmvcjpa.domain.customer.Customer;
 import hello.springmvcjpa.domain.customer.CustomerService;
 import hello.springmvcjpa.domain.login.SessionConst;
@@ -34,21 +35,6 @@ public class ShopController {
         return "shop/shop";
     }
 
-   /*가게 전체 조회(가게목록)
-    @GetMapping("/owner/shops")
-    public String adminShops(Model model) {
-
-        List<Shop> shops =shopService.findAll();
-        List<ShopForm> forms = new ArrayList<>();
-
-        for (Shop shop : shops) {
-            ShopForm form = new ShopForm(shop.getId(), shop.getShopName(), shop.getPos());
-            forms.add(form);
-        }
-
-        model.addAttribute("shops", forms);
-        return "owner/shopList";
-    }*/
     /*owner detail +가게 전체 조회(가게목록)*/
     @GetMapping("/owner/shops")
     public String adminShops(HttpServletRequest request, Model model) {
@@ -69,6 +55,23 @@ public class ShopController {
         model.addAttribute("shops", forms);
         return "owner/shopList";
     }
+
+    @PostMapping("/owner/shops/address/editForm")
+    public String editForm(Address address, Model model) {
+        model.addAttribute("address", address);
+        return "member/infoEditForm";
+    }
+
+    @PostMapping("/owner/shops/address/edit")
+    public String edit(Address address, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
+
+        customerService.addressEdit(customerId,address);
+
+        return "redirect:/owner/shops";
+    }
+
 
     @GetMapping("/owner/shops/add")
     public String getShop(Model model){
