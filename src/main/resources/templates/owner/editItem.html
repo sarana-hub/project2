@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header">
+<head>
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}"
           href="../css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@
         </div>
 
         <div>
-            <label th:for="*{shopName}" th:text="#{label.item.shopName}">매장 명</label>
+            <label th:for="*{shopName}" th:text="#{label.shop.shopName}">매장 명</label>
             <input type="text" th:field="*{shopName}" class="form-control" readonly>
         </div>
 
