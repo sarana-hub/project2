@@ -1,6 +1,6 @@
 package hello.springmvcjpa.domain.item;
 
-import hello.springmvcjpa.web.item.ItemForm;
+import hello.springmvcjpa.web.owner.item.ItemForm;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.*;

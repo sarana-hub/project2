@@ -5,7 +5,7 @@ import hello.springmvcjpa.domain.file.FileStore;
 import hello.springmvcjpa.domain.item.Item;
 import hello.springmvcjpa.domain.item.ItemService;
 import hello.springmvcjpa.domain.item.UploadFile;
-import hello.springmvcjpa.web.item.ItemSaveForm;
+import hello.springmvcjpa.web.owner.item.ItemSaveForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;

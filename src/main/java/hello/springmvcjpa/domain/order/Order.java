@@ -4,6 +4,7 @@ import hello.springmvcjpa.domain.customer.Customer;
 import hello.springmvcjpa.domain.delivery.Delivery;
 import hello.springmvcjpa.domain.delivery.DeliveryStatus;
 import hello.springmvcjpa.domain.orderItem.OrderItem;
+import hello.springmvcjpa.domain.shop.Shop;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

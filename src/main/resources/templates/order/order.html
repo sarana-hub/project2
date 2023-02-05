@@ -21,7 +21,7 @@
       <tbody>
       <tr th:each="order : ${orders}">
         <td><a href="item.html" th:href="@{|/items/${order.orderItems[0].item.id}|}"  th:text="${order.id}">item id</a></td>
-        <td th:text="${order.orderItems[0].item.shop}"></td>
+        <td th:text="${order.orderItems[0].item.shopName}"></td>
         <td th:text="${order.orderItems[0].item.itemName}"></td>
         <td th:text="${{order.orderItems[0].orderPrice}}"></td>
         <td th:text="${order.orderItems[0].count}"></td>

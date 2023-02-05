@@ -1,4 +1,4 @@
-package hello.springmvcjpa.web.item;
+package hello.springmvcjpa.web.owner.item;
 
 import hello.springmvcjpa.domain.item.UploadFile;
 import hello.springmvcjpa.domain.shop.Shop;

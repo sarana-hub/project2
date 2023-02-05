@@ -17,6 +17,7 @@ public class ShopForm {
     private String shopName;
     private String pos;
 
-    @OneToMany
-    private List<Item> items = new ArrayList<>();
+    /*@OneToMany
+    private List<Item> items = new ArrayList<>();*/
+
 }

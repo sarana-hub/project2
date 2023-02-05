@@ -9,20 +9,19 @@
 
 <div class="container" style="max-width: 600px">
     <div class="py-5 text-center">
-        <h1>Shop List</h1>
+        <h1>owner info</h1>
     </div>
 
-    <div class="row">
-    <div class="col">
-        <button class="w-100 btn btn-secondary btn-lg"
-                type="button" onclick="location.href='/owner/items'">상품 관리 페이지</button>
+    <!--
+    <div>
+        <p th:text="|회원 구분 : ${customer.role}|">customer role</p>
     </div>
-
-    <div class="col">
-        <button class="w-100 btn btn-secondary btn-lg"
-                type="button" onclick="location.href='/owner/orders'">주문 관리 페이지</button>
+    <div>
+        <p th:text="|회원 명 : ${customer.name}|">customer name</p>
     </div>
-    </div>
+    <div>
+        <p th:text="|주소 : ${customer.address.city} ${customer.address.street} ${customer.address.zipcode}|">customer address</p>
+    </div>-->
 
     <hr class="my-4">
 
@@ -32,8 +31,6 @@
         </div>
     </div>
 
-    <hr class="my-4">
-
     <div>
         <table class="table">
             <thead>
@@ -41,7 +38,6 @@
                 <th th:text="#{label.shop.id}">Id</th>
                 <th th:text="#{label.shop.shopName}">매장명</th>
                 <th th:text="#{label.shop.pos}">위치</th>
-                <th th:text="#{label.shop.items}">item 목록</th>
             </tr>
             </thead>
             <tbody>
@@ -51,7 +47,6 @@
 
                 <td th:text="${shop.shopName}">shop name</td>
                 <td th:text="${shop.pos}">shop pos</td>
-                <td th:each="item : ${shop.items}">item list</td>
 
             </tr>
             </tbody>

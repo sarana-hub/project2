@@ -1,11 +1,12 @@
 package hello.springmvcjpa.domain.item;
 
 import hello.springmvcjpa.domain.file.FileStore;
+//import hello.springmvcjpa.domain.shop.ShopService;
 import hello.springmvcjpa.domain.shop.Shop;
 import hello.springmvcjpa.domain.shop.ShopService;
-import hello.springmvcjpa.web.item.ItemForm;
-import hello.springmvcjpa.web.item.ItemSaveForm;
-import hello.springmvcjpa.web.item.ItemUpdateForm;
+import hello.springmvcjpa.web.owner.item.ItemForm;
+import hello.springmvcjpa.web.owner.item.ItemSaveForm;
+import hello.springmvcjpa.web.owner.item.ItemUpdateForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
@@ -41,7 +42,7 @@ public class ItemController {
         List<ItemForm> forms = new ArrayList<>();
         for (Item item : items) {
             ItemForm form= new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
-                   item.getShop(), item.getImageFiles());
+                   item.getShopName(), item.getImageFiles());
             forms.add(form);
         }
         model.addAttribute("items", forms);
@@ -57,7 +58,7 @@ public class ItemController {
         log.info("itemId = {}", itemId);
         Item item = itemService.findById(itemId);
         ItemForm form = new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
-                item.getShop(), item.getImageFiles());
+                item.getShopName(), item.getImageFiles());
         model.addAttribute("item", form);
         return "item/item";
     }
@@ -73,7 +74,7 @@ public class ItemController {
 
         for (Item item : items) {
             ItemForm form = new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
-                    item.getShop(), item.getImageFiles());
+                    item.getShopName(), item.getImageFiles());
             forms.add(form);
         }
 
@@ -167,7 +168,7 @@ public class ItemController {
         /*Item item = new Item(form.getId(), form.getItemName(), form.getPrice(), form.getStockQuantity(),
                 form.getShop(), form.getImageFiles());*/
         Item item = itemService.findById(itemId);
-        item.setShop(form.getShop());
+        item.setShopName(form.getShop());
         item.setItemName(form.getItemName());
         item.setPrice(form.getPrice());
         item.setStockQuantity(form.getStockQuantity());

@@ -19,21 +19,16 @@ import java.util.List;
 public class ShopController {
     private final ShopService shopService;
 
-/*@GetMapping("/loginHome")
-    public String Home() {
-        return "owner/home";
-    }*/
-
     @GetMapping("/owner/shops/{shopId}")
     public String shop(@PathVariable("shopId") Long shopId, Model model){
         log.info("shopId = {}", shopId);
         Shop shop=shopService.findById(shopId);
-        ShopForm form=new ShopForm(shop.getId(), shop.getShopName(), shop.getPos(), shop.getItems());
+        ShopForm form=new ShopForm(shop.getId(), shop.getShopName(), shop.getPos());
         model.addAttribute("shop",form);
         return "shop/shop";
     }
 
-    /**가게 전체 조회(가게목록)*/
+  /*가게 전체 조회(가게목록)*/
     @GetMapping("/owner/shops")
     public String adminShops(Model model) {
 
@@ -41,7 +36,7 @@ public class ShopController {
         List<ShopForm> forms = new ArrayList<>();
 
         for (Shop shop : shops) {
-            ShopForm form = new ShopForm(shop.getId(), shop.getShopName(), shop.getPos(), shop.getItems());
+            ShopForm form = new ShopForm(shop.getId(), shop.getShopName(), shop.getPos());
             forms.add(form);
         }
 
@@ -61,10 +56,10 @@ public class ShopController {
 
         if (bindingResult.hasErrors()) {
             log.info("errors ={}", bindingResult.toString());
-            return "owner/addForm";
+            return "owner/addShop";
         }
 
-        Shop shop = new Shop(form.getShopName(), form.getPos(), form.getItems());
+        Shop shop = new Shop(form.getShopName(), form.getPos());
 
         Long shopId= shopService.save(shop);
 
@@ -73,7 +68,13 @@ public class ShopController {
         return "redirect:/owner/shops";
     }
 
-   /* @GetMapping("/shops/add")
+    /*
+    @GetMapping("/loginHome")
+    public String Home() {
+        return "owner/home";
+    }
+
+    @GetMapping("/shops/add")
     public String getShop(Model model){
         model.addAttribute("shop", new Shop());
         return "owner/addShop";
@@ -87,4 +88,5 @@ public class ShopController {
         }
         return "owner/addShopCheck";
     }*/
+
 }
