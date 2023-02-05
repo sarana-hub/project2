@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/header :: header">
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}"
           href="../css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +17,7 @@
 <body>
 
 <div class="container">
+    <div th:replace="fragments/ownerHeader :: ownerHeader"/>
 
     <div class="py-5 text-center">
         <h1>Add Item</h1>
@@ -68,6 +69,9 @@
             </div>
         </div>
     </ul>
-</form>
+    </form>
+
+    <div th:replace="fragments/footer :: footer"/>
+</div>
 </body>
 </html>

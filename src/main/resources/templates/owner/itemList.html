@@ -8,6 +8,8 @@
 <body>
 
 <div class="container" style="max-width: 600px">
+    <div th:replace="fragments/ownerHeader :: ownerHeader"/>
+
     <div class="py-5 text-center">
         <h1>Item List</h1>
     </div>
@@ -49,6 +51,7 @@
         </tbody>
     </table>
     </div>
+    <div th:replace="fragments/footer :: footer"/>
 </div>
 </body>
 </html>

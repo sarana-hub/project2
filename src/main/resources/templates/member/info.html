@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments/header :: header">
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}"
           href="../css/bootstrap.min.css" rel="stylesheet">
@@ -12,6 +12,8 @@
 </head>
 <body>
 <div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
     <div class="py-5 text-center">
         <h1>User Detail!</h1>
     </div>
@@ -44,6 +46,8 @@
             <button class="w-100 btn btn-primary btn-lg" type="button" onclick="location.href='/'">목록으로</button>
         </div>
     </div>
+
+    <div th:replace="fragments/footer :: footer"/>
 </div>
 </body>
 </html>

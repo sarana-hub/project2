@@ -8,6 +8,8 @@
 <body>
 
 <div class="container" style="max-width: 600px">
+    <div th:replace="fragments/ownerHeader :: ownerHeader"/>
+
     <div class="py-5 text-center">
         <h2>owner DashBoard</h2>
     </div>
@@ -31,8 +33,9 @@
             <button class="w-100 btn btn-secondary btn-lg"
             type="button" onclick="location.href='/owner/orders'">주문 관리 페이지</button>
         </div>
-
     </div>
-    <hr class="my-4">
+    <div th:replace="fragments/footer :: footer"/>
+</div>
+
 </body>
 </html>
