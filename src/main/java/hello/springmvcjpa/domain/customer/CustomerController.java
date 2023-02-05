@@ -25,7 +25,6 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    //@GetMapping("/customers/add")
     @GetMapping("/add")
     public String addForm(Model model) {
         model.addAttribute("member", new MemberSaveForm());
@@ -44,7 +43,6 @@ public class CustomerController {
         }
 
         Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
-        Shop shop=new Shop(form.getShopName(), form.getPos());
         Customer customer = new Customer(form.getLoginId(),form.getPassword(), form.getName(), form.getPhone(), form.getRole(), address);
         customerService.save(customer);
 

@@ -1,5 +1,8 @@
 package hello.springmvcjpa.domain.shop;
 
+import hello.springmvcjpa.domain.customer.Customer;
+import hello.springmvcjpa.domain.customer.CustomerService;
+import hello.springmvcjpa.domain.login.SessionConst;
 import hello.springmvcjpa.web.shop.ShopForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +13,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +23,7 @@ import java.util.List;
 @Controller
 public class ShopController {
     private final ShopService shopService;
+    private final CustomerService customerService;
 
     @GetMapping("/owner/shops/{shopId}")
     public String shop(@PathVariable("shopId") Long shopId, Model model){
@@ -28,9 +34,29 @@ public class ShopController {
         return "shop/shop";
     }
 
-  /*가게 전체 조회(가게목록)*/
+   /*가게 전체 조회(가게목록)
     @GetMapping("/owner/shops")
     public String adminShops(Model model) {
+
+        List<Shop> shops =shopService.findAll();
+        List<ShopForm> forms = new ArrayList<>();
+
+        for (Shop shop : shops) {
+            ShopForm form = new ShopForm(shop.getId(), shop.getShopName(), shop.getPos());
+            forms.add(form);
+        }
+
+        model.addAttribute("shops", forms);
+        return "owner/shopList";
+    }*/
+    /*owner detail +가게 전체 조회(가게목록)*/
+    @GetMapping("/owner/shops")
+    public String adminShops(HttpServletRequest request, Model model) {
+
+        HttpSession session = request.getSession();
+        Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
+        Customer customer = customerService.findById(customerId);
+        model.addAttribute("customer", customer);
 
         List<Shop> shops =shopService.findAll();
         List<ShopForm> forms = new ArrayList<>();

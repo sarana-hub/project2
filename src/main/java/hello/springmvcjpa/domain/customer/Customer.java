@@ -39,10 +39,10 @@ public class Customer {
         this.phone = phone;
     }*/
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private AccessRole role; //점주, 고객
 
-    //@Embedded
+    @Embedded
     private Address address;
 
 
@@ -54,7 +54,6 @@ public class Customer {
         this.role = role;
         this.address = address;
     }
-
 
     public void editAddress(Address address) {
         this.address = address;

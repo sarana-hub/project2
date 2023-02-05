@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/bootstrap.min.css}"
           href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container" style="max-width: 600px">
+<div class="container">
     <div th:replace="fragments/ownerHeader :: ownerHeader"/>
 
     <div class="py-5 text-center">
-        <h1>owner info</h1>
+        <h1>Owner Detail</h1>
     </div>
 
-    <!--
     <div>
         <p th:text="|회원 구분 : ${customer.role}|">customer role</p>
     </div>
@@ -22,8 +26,12 @@
         <p th:text="|회원 명 : ${customer.name}|">customer name</p>
     </div>
     <div>
+        <p th:text="|휴대폰 번호 : ${customer.phone}|">customer phone</p>
+    </div>
+
+    <div>
         <p th:text="|주소 : ${customer.address.city} ${customer.address.street} ${customer.address.zipcode}|">customer address</p>
-    </div>-->
+    </div>
 
     <hr class="my-4">
 

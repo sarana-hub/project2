@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class IndexController {
 
-    //private final MemberRepository memberRepository;
     private final CustomerRepository customerRepository;
 
     //@GetMapping("/")

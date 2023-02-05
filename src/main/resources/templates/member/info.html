@@ -27,17 +27,21 @@
         <p th:text="|회원 명 : ${customer.name}|">customer name</p>
     </div>
     <div>
+        <p th:text="|휴대폰 번호 : ${customer.phone}|">customer phone</p>
+    </div>
+
+    <div>
         <p th:text="|주소 : ${customer.address.city} ${customer.address.street} ${customer.address.zipcode}|">customer address</p>
     </div>
 
     <div class="row">
         <div class="col">
-    <form action="/members/address/editForm" method="post">
-        <input class="form-control" type="hidden" name="city" th:value="${customer.address.city}">
-        <input class="form-control" type="hidden" name="street" th:value="${customer.address.street}">
-        <input class="form-control" type="hidden" name="zipcode" th:value="${customer.address.zipcode}">
-        <button type="submit">주소 수정</button>
-    </form>
+            <form action="/members/address/editForm" method="post">
+                <input class="form-control" type="hidden" name="city" th:value="${customer.address.city}">
+                <input class="form-control" type="hidden" name="street" th:value="${customer.address.street}">
+                <input class="form-control" type="hidden" name="zipcode" th:value="${customer.address.zipcode}">
+            <button type="submit">주소 수정</button>
+        </form>
         </div>
 
         <hr class="my-4">
