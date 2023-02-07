@@ -1,10 +1,13 @@
 package hello.springmvcjpa.domain.shop;
 
+import hello.springmvcjpa.domain.Address;
+import hello.springmvcjpa.domain.Pos;
 import hello.springmvcjpa.domain.item.Item;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +29,10 @@ public class Shop {
     private String shopName;
 
     private String pos;
+    /*@Embedded
+    private Pos pos;*/
+
+
 
     /*@OneToMany(cascade = CascadeType.ALL)
     private List<Item> items = new ArrayList<>();*/
@@ -43,9 +50,11 @@ public class Shop {
     public Shop change(Shop shop){
         this.shopName=shop.getShopName();
         this.pos=shop.getPos();
-        //this.items=shop.getItems();
-
         return this;
     }
+
+    /*public void editPos(Pos pos) {
+        this.pos = pos;
+    }*/
 
 }

@@ -42,6 +42,30 @@
                 <div th:errors="*{pos}" class="field-error">위치 오류</div>
             </div>
 
+            <!--
+            <br>
+            <div>
+                <label for="pos">주소</label>
+                <div id="pos">
+                    <div>
+                        <label for="city">도시</label>
+                        <input type="text" id="city" th:field="*{city}" class="form-control" th:errorclass="field-error" placeholder="예) 서울">
+                        <div th:errors="*{city}" class="field-error">도시명 오류</div>
+                    </div>
+                    <div>
+                        <label for="street">도로명</label>
+                        <input type="text" id="street" th:field="*{street}" class="form-control" th:errorclass="field-error" placeholder="ex) ~로 ~길 ~동 ~호">
+                        <div th:errors="*{street}" class="field-error">도로명 오류</div>
+                    </div>
+                    <div>
+                        <label for="zipcode">우편번호</label>
+                        <input type="text" id="zipcode" th:field="*{zipcode}" class="form-control" th:errorclass="field-error" placeholder="예) 12345">
+                        <div th:errors="*{zipcode}" class="field-error">우편번호 오류</div>
+                    </div>
+                </div>
+            </div>
+            <br>-->
+
 
             <hr class="my-4">
 

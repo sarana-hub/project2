@@ -1,5 +1,6 @@
 package hello.springmvcjpa.domain.shop;
 
+import hello.springmvcjpa.domain.Pos;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,4 +33,10 @@ public class ShopService {
     public Long save(Shop shop) {
         return shopRepository.save(shop);
     }
+
+    /*@Transactional
+    public void posEdit(Long shopId, Pos pos) {
+        Shop shop = shopRepository.findById(shopId);
+        shop.editPos(pos);
+    }*/
 }
