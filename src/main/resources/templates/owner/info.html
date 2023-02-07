@@ -35,7 +35,7 @@
 
     <div class="row">
         <div class="col">
-            <form action="/owner/shops/address/editForm" method="post">
+            <form action="/owner/info/address/editForm" method="post">
                 <input class="form-control" type="hidden" name="city" th:value="${customer.address.city}">
                 <input class="form-control" type="hidden" name="street" th:value="${customer.address.street}">
                 <input class="form-control" type="hidden" name="zipcode" th:value="${customer.address.zipcode}">
@@ -47,36 +47,6 @@
     </div>
 
     <hr class="my-4">
-
-    <div class="row">
-        <div class="col">
-            <button class="btn btn-primary float-end" type="button" onclick="location.href='/owner/shops/add'" th:text="#{page.addShop}">가게 등록</button>
-        </div>
-    </div>
-
-    <div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th th:text="#{label.shop.id}">Id</th>
-                <th th:text="#{label.shop.shopName}">매장명</th>
-                <th th:text="#{label.shop.pos}">위치</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="shop : ${shops}">
-
-                <td><a href="shop.html" th:text="${shop.id}">shop id</a></td>
-
-                <td th:text="${shop.shopName}">shop name</td>
-                <td th:text="${shop.pos}">shop pos</td>
-
-                <!--<td th:text="|주소 : ${shop.pos.city} ${shop.pos.street} ${shop.pos.zipcode}|">shop address</td>-->
-
-            </tr>
-            </tbody>
-        </table>
-    </div>
 
     <div th:replace="fragments/footer :: footer"/>
 </div>

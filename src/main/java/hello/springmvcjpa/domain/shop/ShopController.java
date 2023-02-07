@@ -26,9 +26,8 @@ import java.util.List;
 @Controller
 public class ShopController {
     private final ShopService shopService;
-    private final CustomerService customerService;
 
-    @GetMapping("/owner/shops/{shopId}")
+    @GetMapping("/owner/{shopId}")
     public String shop(@PathVariable("shopId") Long shopId, Model model){
     //public String shop(@PathVariable("shopId") Long shopId, @Valid @ModelAttribute("shop") ShopForm form, Model model){
         log.info("shopId = {}", shopId);
@@ -53,15 +52,10 @@ public class ShopController {
         return "shop/shop";
     }
 
-    /*owner detail +가게 전체 조회(가게목록)*/
-    @GetMapping("/owner/shops")
-    public String adminShops(HttpServletRequest request, Model model) {
+    /*가게 전체 조회(가게목록)*/
+    @GetMapping("/owner")
+    public String Shops(HttpServletRequest request, Model model) {
     //public String adminShops(HttpServletRequest request, Pos pos, Model model) {
-        HttpSession session = request.getSession();
-        Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
-        Customer customer = customerService.findById(customerId);
-        model.addAttribute("customer", customer);
-
         List<Shop> shops =shopService.findAll();
         List<ShopForm> forms = new ArrayList<>();
 
@@ -84,18 +78,17 @@ public class ShopController {
 
             forms.add(form);
         }
-
         model.addAttribute("shops", forms);
-        return "owner/shopList";
+        return "/owner/home";
     }
 
-    @GetMapping("/owner/shops/add")
+    @GetMapping("/owner/add")
     public String getShop(Model model){
         model.addAttribute("shop", new ShopForm());
         return "owner/addShop";
     }
 
-    @PostMapping("/owner/shops/add")
+    @PostMapping("/owner/add")
     public String add(@Validated @ModelAttribute("shop") ShopForm form, BindingResult bindingResult,
                       RedirectAttributes redirectAttributes){
 
@@ -112,25 +105,11 @@ public class ShopController {
 
         redirectAttributes.addAttribute("shopId", shopId);
         redirectAttributes.addAttribute("status", true);
-        return "redirect:/owner/shops";
+        return "redirect:/owner";
     }
 
 
-    //owner 회원 주소 수정
-    @PostMapping("/owner/shops/address/editForm")
-    public String editForm(Address address, Model model) {
-        model.addAttribute("address", address);
-        return "owner/infoEditForm";
-    }
-    @PostMapping("/owner/shops/address/edit")
-    public String edit(Address address, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
 
-        customerService.addressEdit(customerId,address);
-
-        return "redirect:/owner/shops";
-    }
 
 
     /*

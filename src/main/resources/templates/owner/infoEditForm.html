@@ -19,7 +19,7 @@
         <h1>Edit</h1>
     </div>
 
-    <form th:action="@{/owner/shops/address/edit}" th:object="${pos}" method="post">
+    <form th:action="@{/owner/info/address/edit}" th:object="${address}" method="post">
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메세지</p>
         </div>

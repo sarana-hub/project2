@@ -21,7 +21,7 @@
         </div> -->
         <div class="col">
             <button class="w-100 btn btn-dark btn-lg"
-                    type="button" onclick="location.href='/owner/shops'">회원 정보</button>
+                    type="button" onclick="location.href='/owner/info'">회원 정보</button>
         </div>
         <div class="col">
             <form th:action="@{/login/logout}" method="post">
@@ -40,7 +40,34 @@
             type="button" onclick="location.href='/owner/orders'">주문 관리 페이지</button>
         </div>
 
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg" type="button" onclick="location.href='/owner/add'" th:text="#{page.addShop}">가게 등록</button>
+        </div>
     </div>
+
+    <hr class="my-4">
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{label.shop.id}">Id</th>
+                <th th:text="#{label.shop.shopName}">매장명</th>
+                <th th:text="#{label.shop.pos}">위치</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shop : ${shops}">
+                <td><a href="shop.html" th:text="${shop.id}">shop id</a></td>
+                <td th:text="${shop.shopName}">shop name</td>
+                <td th:text="${shop.pos}">shop pos</td>
+                <!--<td th:text="|주소 : ${shop.pos.city} ${shop.pos.street} ${shop.pos.zipcode}|">shop address</td>-->
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
     <div th:replace="fragments/footer :: footer"/>
 </div>
 
