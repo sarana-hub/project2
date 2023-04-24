@@ -26,20 +26,21 @@
 
         <ul>
             <div>
-                <label th:for="*{city}">CITY</label>
-                <input class="form-control" type="text" th:field="*{city}" th:errorclass="field-error">
+                <label for="city">도시</label>
+                <input class="form-control" type="text" id="city" th:field="*{city}" th:errorclass="field-error" placeholder="예) 서울">
                 <div th:errors="*{city}" class="field-error">도시명 오류</div>
             </div>
             <div>
-                <label th:for="*{street}">STREET</label>
-                <input class="form-control" type="text" th:field="*{street}" th:errorclass="field-error">
+                <label for="street">도로명</label>
+                <input class="form-control" type="text" id="street" th:field="*{street}" th:errorclass="field-error" placeholder="ex) ~로 ~길 ~동 ~호">
                 <div th:errors="*{street}" class="field-error">도로명 오류</div>
             </div>
             <div>
-                <label th:for="*{zipcode}">ZIPCODE</label>
-                <input class="form-control" type="text" th:field="*{zipcode}" th:errorclass="field-error">
+                <label for="zipcode">우편번호</label>
+                <input class="form-control" type="text" id="zipcode" th:field="*{zipcode}" th:errorclass="field-error" placeholder="예) 12345">
                 <div th:errors="*{zipcode}" class="field-error">우편번호 오류</div>
             </div>
+
 
             <div class="col">
                 <button class="w-100 btn btn-primary btn-lg" type="submit" th:text="#{button.update}">수정</button>

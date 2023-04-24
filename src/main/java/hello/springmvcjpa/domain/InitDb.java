@@ -62,7 +62,7 @@ public class InitDb {
             Customer customer2 = new Customer(loginId2, password2, name2, "01011112222", role2, address2);
             em.persist(customer2);
 
-            /*String name = "item_1";
+            String name = "item_1";
             int price = 1000000;
             int stockQuantity = 100;
             String shop2="bhc";
@@ -70,11 +70,11 @@ public class InitDb {
 
             Item item = new Item(name, price, stockQuantity, shop2, null);
 
-            em.persist(item);*/
+            em.persist(item);
         }
         public void dbInit2() {
 
-            /*String name = "item_2";
+            String name = "item_2";
             int price = 20000;
             int stockQuantity = 10;
             String shop3="bing";
@@ -82,7 +82,7 @@ public class InitDb {
 
             Item item = new Item(name, price, stockQuantity, shop3, null);
 
-            em.persist(item);*/
+            em.persist(item);
         }
     }
 }
