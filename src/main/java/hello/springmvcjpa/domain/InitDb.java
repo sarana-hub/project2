@@ -10,15 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 
-/**
- * 총 주문 2개
- * userA
- *  JPA1 BOOK
- *  JPA2 BOOK
- * userB
- *  SPRING1 BOOK
- *  SPRING2 BOOK
- */
+
 @Component
 @RequiredArgsConstructor
 public class InitDb {
@@ -40,13 +32,13 @@ public class InitDb {
 
         public void dbInit1() {
 
-            String loginId = "tt";
-            String name1 = "점주";
-            String password = "1111";
+            String loginId = "ww";
+            String name1 = "점주야";
+            String password = "1234";
             AccessRole role = AccessRole.OWNER;
-            Address address = new Address("city", "street", 1111);
+            Address address = new Address("서울시 성북구", "성북로5길", 15);
 
-            Shop shop=new Shop("cafe", "서울");
+            Shop shop=new Shop("메종드민서쓰", "경기 용인시 처인구 금학로 121");
             /*Pos pos=new Pos("cityyy", "streeeet", 1201);
             Shop shop=new Shop("cafe", pos);*/
 
@@ -54,14 +46,24 @@ public class InitDb {
             em.persist(customer);
 
             String loginId2 = "user";
-            String name2 = "유저";
-            String password2 = "1234";
+            String name2 = "김유저";
+            String password2 = "1111";
             AccessRole role2 = AccessRole.USER;
-            Address address2 = new Address("city2", "street2", 2222);
+            Address address2 = new Address("서울시 강서구", "공항대로", 11);
 
             Customer customer2 = new Customer(loginId2, password2, name2, "01011112222", role2, address2);
             em.persist(customer2);
 
+            String loginId3 = "ss";
+            String name3 = "나유저";
+            String password3 = "2222";
+            AccessRole role3 = AccessRole.USER;
+            Address address3 = new Address("서울시 양천구", "신월로", 375);
+
+            Customer customer3 = new Customer(loginId2, password2, name2, "01034345656", role2, address2);
+            em.persist(customer3);
+
+            /*
             String name = "item_1";
             int price = 1000000;
             int stockQuantity = 100;
@@ -70,8 +72,10 @@ public class InitDb {
 
             Item item = new Item(name, price, stockQuantity, shop2, null);
 
-            em.persist(item);
+            em.persist(item);*/
         }
+
+        /*
         public void dbInit2() {
 
             String name = "item_2";
@@ -83,6 +87,6 @@ public class InitDb {
             Item item = new Item(name, price, stockQuantity, shop3, null);
 
             em.persist(item);
-        }
+        }*/
     }
 }

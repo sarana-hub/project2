@@ -11,12 +11,12 @@
     <div th:replace="fragments/ownerHeader :: ownerHeader"/>
 
     <div class="py-5 text-center">
-        <h1>Item List</h1>
+        <h1>쿠폰 목록</h1>
     </div>
 
     <div class="row">
     <div class="col">
-        <button class="btn btn-primary float-end" type="button" onclick="location.href='/owner/items/add'" th:text="#{page.addItem}">상품 등록</button>
+        <button class="btn btn-primary float-end" type="button" onclick="location.href='/owner/items/add'" th:text="#{page.addItem}">쿠폰 등록</button>
     </div>
     </div>
 
@@ -28,8 +28,8 @@
         <th th:text="#{label.item.imageFiles}">이미지</th>
         <th th:text="#{label.item.shop}">매장명</th>
         <th th:text="#{label.item.id}">Id</th>
-        <th th:text="#{label.item.itemName}">Name</th>
-        <th th:text="#{label.item.price}">Price</th>
+        <th th:text="#{label.item.itemName}">상품명</th>
+        <th th:text="#{label.item.price}">가격</th>
         <th th:text="#{label.item.quantity}">Stock_Quantity</th>
         </tr>
         </thead>
