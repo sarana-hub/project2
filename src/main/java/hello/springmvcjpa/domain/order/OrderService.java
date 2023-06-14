@@ -70,7 +70,7 @@ public class OrderService {
     //주문시
     private void sendSMS(String hp) throws IOException {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSDGBJ", "K4KPKLGRZHQ8SO",    "https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSDGB", "K4KPKLGRZHQ", "https://api.coolsms.co.kr");
 
         ClassPathResource resource = new ClassPathResource("static/cti.jpg");
         File file = resource.getFile();
@@ -88,7 +88,7 @@ public class OrderService {
     //선물시
     private void giftSMS(String hp, String text) throws IOException {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSDGBJU", "K4KPKLGRZHQ8SOCCN",   "https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSDGBJ", "K4KPKLGRZHQ8SOC", "https://api.coolsms.co.kr");
 
         ClassPathResource resource = new ClassPathResource("static/sample.jpg");
         File file = resource.getFile();

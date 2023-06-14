@@ -17,9 +17,6 @@
         <th>주문수량</th>
         <th>주문일시</th>
 
-        <th>주문상태</th>
-        <th>주문취소버튼</th>
-        <th>발송상태</th>
       </tr>
       </thead>
       <tbody>
@@ -31,6 +28,7 @@
         <td th:text="${order.orderItems[0].count}"></td>
         <td th:text="${{order.orderDate}}"></td>
 
+        <!--
         <td th:text="${order.orderStatus}"></td>
         <td>
           <a th:if="${order.orderStatus.name() == 'ORDER'}" href="#"
@@ -38,7 +36,7 @@
              class="btn btn-danger">CANCEL</a>
         </td>
 
-        <td th:text="${order.delivery.deliveryStatus}"></td>
+        <td th:text="${order.delivery.deliveryStatus}"></td>-->
 
       </tr>
       </tbody>

@@ -41,11 +41,11 @@ public class OrderController {
         return "redirect:/items";
     }
 
-    @PostMapping("/owner/orders/{orderId}/cancel")
+    /*@PostMapping("/owner/orders/{orderId}/cancel")
     public String cancel(@PathVariable("orderId") Long orderId) {
         orderService.cancel(orderId);
         return "redirect:/owner/orders";
-    }
+    }*/
 
     @PostMapping("/owner/orders/{orderId}/comp")
     public String comp(@PathVariable("orderId") Long orderId) {
@@ -53,26 +53,12 @@ public class OrderController {
         return "redirect:/owner/orders";
     }
 
-    /*@GetMapping("/owner/orders")
-    public String orderList(Model model) {
-        List<Order> orders = orderService.findOrders();
-        model.addAttribute("orders", orders);
-        return "owner/orderList";
-    }*/
     @GetMapping("/owner/orders")  //주문 목록 검색
     public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch);
         model.addAttribute("orders", orders);
         return "owner/orderList";
     }
-    /*@GetMapping("/owner/orders")
-    public String orderList(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession();
-        Long shopId= (Long) session.getAttribute(SessionConst.LOGIN_SHOP);
-        List<Order> orders =orderService.findShopOrders(shopId);
-        model.addAttribute("orders", orders);
-        return "owner/orderList";
-    }*/
 
 
     @GetMapping("/orders")
@@ -87,11 +73,10 @@ public class OrderController {
         return "order/order";
     }
 
-    @PostMapping("/orders/{orderId}/cancel")
+    /*@PostMapping("/orders/{orderId}/cancel")
     public String cancel2(@PathVariable("orderId") Long orderId) {
         orderService.cancel(orderId);
         return "redirect:/orders";
-    }
-
+    }*/
 
 }
