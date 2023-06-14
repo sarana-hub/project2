@@ -52,7 +52,7 @@ public class InitDb {
             AccessRole role2 = AccessRole.USER;
             Address address2 = new Address("서울시 강서구", "공항대로", 11);
 
-            Customer customer2 = new Customer(loginId2, password2, name2, "01011112222", role2, address2);
+            Customer customer2 = new Customer(loginId2, password2, name2, "01051049674", role2, address2);
             em.persist(customer2);
 
             String loginId3 = "ss";

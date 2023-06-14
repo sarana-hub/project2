@@ -29,6 +29,17 @@ public class OrderController {
 
         return "redirect:/items";
     }
+    @PostMapping("/orders/add2")
+    public String add2(@RequestParam("itemId") Long itemId, @RequestParam("cnt") int cnt,
+                       @RequestParam("phone") String phone, @RequestParam("msg") String msg, HttpServletRequest request) throws IOException {
+
+        HttpSession session = request.getSession();
+        Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
+
+        orderService.createOrder2(itemId, customerId, cnt, phone, msg);
+
+        return "redirect:/items";
+    }
 
     @PostMapping("/owner/orders/{orderId}/cancel")
     public String cancel(@PathVariable("orderId") Long orderId) {

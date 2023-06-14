@@ -41,9 +41,7 @@
     <div>
         <p th:text="|잔여 수량 : ${{item.stockQuantity}} 개|">item quantity</p>
     </div>
-    <button class="w-100 btn btn-secondary btn-lg" type="button" onclick="location.href='/items'">목록으로</button>
 
-    <hr class="my-4">
 
     <div class="row">
         <div class="col">
@@ -52,10 +50,31 @@
                 <input type="hidden" name="itemId" th:value="${item.id}">
                 <label for="count">수량 : </label>
                 <input type="number" id="count" name="count" class="form-control">
-                <button class="w-100 btn btn-secondary btn-lg" type="submit">주문하기</button>
+                <button class="w-10 btn btn-secondary btn-lg" type="submit">주문하기</button>
             </form>
         </div>
     </div>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col">
+            <!--선물-->
+            <form action="/orders/add2" method="post">
+                <input type="hidden" name="itemId" th:value="${item.id}">
+                <label for="cnt">수량 : </label>
+                <input type="number" id="cnt" name="cnt" class="form-control">
+
+                <label for="phone">전화번호 : </label>
+                <input type="tel" id="phone" name="phone" class="form-control" pattern="[0-9]{3}[0-9]{4}[0-9]{4}">
+
+                <label for="msg">메시지 : </label>
+                <input type="text" id="msg" name="msg" class="form-control">
+                <button class="w-10 btn btn-secondary btn-lg" type="submit">선물하기</button>
+            </form>
+        </div>
+    </div>
+
+    <hr class="my-4">
+    <button class="w-100 btn btn-secondary btn-lg" type="button" onclick="location.href='/items'">목록으로</button>
 
     <div th:replace="fragments/footer :: footer"/>
 </div>

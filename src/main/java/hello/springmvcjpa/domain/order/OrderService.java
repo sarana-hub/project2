@@ -16,10 +16,8 @@ import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.response.SingleMessageSentResponse;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
@@ -42,7 +40,6 @@ public class OrderService {
         Customer customer=customerRepository.findById(customerId);
         Item item = itemRepository.findById(itemId);
 
-        //Delivery delivery = new Delivery(DeliveryStatus.READY, customer.getAddress());
         Delivery delivery = new Delivery(DeliveryStatus.READY, customer.getPhone());
 
         OrderItem orderItem = OrderItem.createOrderItem(item, count, item.getPrice());
@@ -53,10 +50,27 @@ public class OrderService {
         sendSMS(customer.getPhone());
     }
 
+    @Transactional
+    public void createOrder2(Long itemId, Long customerId, int count, String phone, String msg) throws IOException {
+        Customer customer=customerRepository.findById(customerId);
+        Item item = itemRepository.findById(itemId);
+
+        Delivery delivery = new Delivery(DeliveryStatus.READY, customer.getPhone());
+
+        OrderItem orderItem = OrderItem.createOrderItem(item, count, item.getPrice());
+
+        Order order = Order.createOrder(customer, delivery, orderItem);
+
+        orderRepository.save(order);
+        giftSMS(phone, msg);
+    }
+
+
+
     //주문시
     private void sendSMS(String hp) throws IOException {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSECGKRB", "1GZDQ9GUXKPWVIJC",   "https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSDGBJ", "K4KPKLGRZHQ8SO",    "https://api.coolsms.co.kr");
 
         ClassPathResource resource = new ClassPathResource("static/cti.jpg");
         File file = resource.getFile();
@@ -72,11 +86,11 @@ public class OrderService {
         SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
     }
     //선물시
-    /*private void giftSMS(String hp, String text) {
+    private void giftSMS(String hp, String text) throws IOException {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSECG", "1GZDQ9GUXKPWVIJC9",   "https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSDGBJU", "K4KPKLGRZHQ8SOCCN",   "https://api.coolsms.co.kr");
 
-        ClassPathResource resource = new ClassPathResource("static/cti.jpg");
+        ClassPathResource resource = new ClassPathResource("static/sample.jpg");
         File file = resource.getFile();
         String imageId = messageService.uploadFile(file, StorageType.MMS, "https://example.com");
 
@@ -88,7 +102,7 @@ public class OrderService {
         message.setImageId(imageId);
 
         SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
-    }*/
+    }
 
 
     /** 주문 내역 검색 */
