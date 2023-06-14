@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+@Controller
 @Slf4j
 @RequiredArgsConstructor
-@Controller
 public class OrderController {
 
     private final OrderService orderService;

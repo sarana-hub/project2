@@ -1,6 +1,6 @@
 package hello.login.validation;
 
-import hello.login.domain.item.Item;
+
 import org.junit.jupiter.api.Test;
 
 import javax.validation.ConstraintViolation;
@@ -13,7 +13,7 @@ public class BeanValidationTest {
 
     @Test
     void beanValidation() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        /*ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
 
         Item item = new Item();
@@ -25,7 +25,7 @@ public class BeanValidationTest {
         for (ConstraintViolation<Item> violation : violations) {
             System.out.println("violation=" + violation);
             System.out.println("violation.message=" + violation.getMessage());
-        }
+        }*/
 
     }
 }

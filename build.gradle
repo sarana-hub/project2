@@ -26,8 +26,9 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+	implementation 'net.nurigo:sdk:4.2.7'
 	runtimeOnly 'com.h2database:h2'
+	compile group: 'net.nurigo', name: 'javaSDK', version: '2.2'
 }
 
 test {

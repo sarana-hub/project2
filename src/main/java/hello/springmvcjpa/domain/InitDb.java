@@ -34,7 +34,7 @@ public class InitDb {
 
             String loginId = "ww";
             String name1 = "점주다";
-            String password = "1234";
+            String password = "0000";
             AccessRole role = AccessRole.OWNER;
             Address address = new Address("서울시 성북구", "성북로5길", 15);
 
