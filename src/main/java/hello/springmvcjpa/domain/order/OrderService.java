@@ -46,12 +46,12 @@ public class OrderService {
         Order order = Order.createOrder(customer, delivery, orderItem);
 
         orderRepository.save(order);
-        sendSMS("01051049674");
+        sendSMS(customer.getPhone());
     }
 
     private void sendSMS(String hp) {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSECG", "1GZDQ9GU", "https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSECGKR", "1GZDQ9GUXKPW",  "https://api.coolsms.co.kr");
         Message message = new Message();
         // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
         message.setFrom("01051049674");
