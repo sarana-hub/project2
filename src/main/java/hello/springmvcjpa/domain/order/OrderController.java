@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -19,7 +20,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/orders/add")
-    public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count, HttpServletRequest request) {
+    public String add(@RequestParam("itemId") Long itemId, @RequestParam("count") int count, HttpServletRequest request) throws IOException {
 
         HttpSession session = request.getSession();
         Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
