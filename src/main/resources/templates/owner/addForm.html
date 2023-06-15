@@ -33,8 +33,8 @@
             <select id="shop" name="shop" class="form-control">
                 <option value="shop">매장 선택</option>
                 <option th:each="shop : ${shops}"
-                        th:value="${shop.shopName}"
-                        th:text="${shop.shopName}" />
+                        th:value="${shop.shop}"
+                        th:text="${shop.shop}"/>
             </select>
         </div>
 

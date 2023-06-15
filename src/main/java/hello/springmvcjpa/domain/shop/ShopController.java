@@ -33,7 +33,7 @@ public class ShopController {
         log.info("shopId = {}", shopId);
         Shop shop=shopService.findById(shopId);
 
-        ShopForm form= new ShopForm(shop.getId(), shop.getShopName(), shop.getPos());
+        ShopForm form= new ShopForm(shop.getId(), shop.getShop(), shop.getPos());
          //       shop.getPos().getCity(), shop.getPos().getStreet(), shop.getPos().getZipcode());
         //ShopForm form =new ShopForm();
         /*Pos pos = new Pos(form.getCity(), form.getStreet(), form.getZipcode());
@@ -61,7 +61,7 @@ public class ShopController {
 
         for (Shop shop : shops) {
             //Pos pos = new Pos(form.getCity(), form.getStreet(), form.getZipcode());
-            ShopForm form= new ShopForm(shop.getId(), shop.getShopName(), shop.getPos());
+            ShopForm form= new ShopForm(shop.getId(), shop.getShop(), shop.getPos());
                     //shop.getPos().getCity(), shop.getPos().getStreet(), shop.getPos().getZipcode());
             /*ShopForm form =new ShopForm();
             form.setId(shop.getId());
@@ -97,7 +97,7 @@ public class ShopController {
             return "owner/addShop";
         }
 
-        Shop shop = new Shop(form.getShopName(), form.getPos());
+        Shop shop = new Shop(form.getShop(), form.getPos());
         //Pos pos=new Pos(form.getCity(), form.getStreet(), form.getZipcode()); //
         //Shop shop = new Shop(form.getShopName(), pos); //
 

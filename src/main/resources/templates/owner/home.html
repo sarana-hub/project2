@@ -67,7 +67,7 @@
             <tbody>
             <tr th:each="shop : ${shops}">
                 <td><a href="shop.html" th:text="${shop.id}">shop id</a></td>
-                <td th:text="${shop.shopName}">shop name</td>
+                <td th:text="${shop.shop}">shop name</td>
                 <td th:text="${shop.pos}">shop pos</td>
                 <!--<td th:text="|주소 : ${shop.pos.city} ${shop.pos.street} ${shop.pos.zipcode}|">shop address</td>-->
 

@@ -31,7 +31,7 @@ public class MemberSaveForm {
     private AccessRole role;
 
     /*Shop*/
-    private String shopName;
+    private String shop;
     private String pos;
     private List<Item> items = new ArrayList<>();
 

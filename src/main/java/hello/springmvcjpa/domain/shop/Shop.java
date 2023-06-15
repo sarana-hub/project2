@@ -26,7 +26,7 @@ public class Shop {
     private Long id;
 
     @NotEmpty
-    private String shopName;
+    private String shop;
 
     private String pos;
     /*@Embedded
@@ -41,14 +41,14 @@ public class Shop {
 
     /*public Shop() {}*/
 
-    public Shop(String shopName, String pos) {
-        this.shopName = shopName;
+    public Shop(String shop, String pos) {
+        this.shop = shop;
         this.pos = pos;
         //this.items = items;
     }
 
     public Shop change(Shop shop){
-        this.shopName=shop.getShopName();
+        this.shop=shop.getShop();
         this.pos=shop.getPos();
         return this;
     }

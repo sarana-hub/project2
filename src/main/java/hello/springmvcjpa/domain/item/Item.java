@@ -30,17 +30,17 @@ public class Item {
 
     //@Embedded
     //private Shop shop; //Address처럼
-    private String shopName;
+    private String shop;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<UploadFile> imageFiles=new ArrayList<>();
     //private List<UploadFile> imageFiles;
 
-    public Item(String itemName, Integer price, Integer stockQuantity, String shopName, List<UploadFile> imageFiles) {
+    public Item(String itemName, Integer price, Integer stockQuantity, String shop, List<UploadFile> imageFiles) {
         this.itemName = itemName;
         this.price = price;
         this.stockQuantity = stockQuantity;
-        this.shopName = shopName;
+        this.shop = shop;
         this.imageFiles = imageFiles;
     }
 
@@ -48,7 +48,7 @@ public class Item {
         this.itemName = item.getItemName();
         this.price = item.getPrice();
         this.stockQuantity = item.getStockQuantity();
-        this.shopName=item.getShopName();
+        this.shop=item.getShop();
         this.imageFiles=item.getImageFiles();
 
         return this;

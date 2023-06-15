@@ -21,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor*/
 public class ShopForm {
     private Long id;
-    private String shopName;
+    private String shop;
 
     private String pos;
     /*Pos*/

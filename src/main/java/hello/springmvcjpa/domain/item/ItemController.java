@@ -42,7 +42,7 @@ public class ItemController {
         List<ItemForm> forms = new ArrayList<>();
         for (Item item : items) {
             ItemForm form= new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
-                   item.getShopName(), item.getImageFiles());
+                   item.getShop(), item.getImageFiles());
             forms.add(form);
         }
         model.addAttribute("items", forms);
@@ -58,7 +58,7 @@ public class ItemController {
         log.info("itemId = {}", itemId);
         Item item = itemService.findById(itemId);
         ItemForm form = new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
-                item.getShopName(), item.getImageFiles());
+                item.getShop(), item.getImageFiles());
         model.addAttribute("item", form);
         return "item/item";
     }
@@ -74,7 +74,7 @@ public class ItemController {
 
         for (Item item : items) {
             ItemForm form = new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
-                    item.getShopName(), item.getImageFiles());
+                    item.getShop(), item.getImageFiles());
             forms.add(form);
         }
 
@@ -168,7 +168,7 @@ public class ItemController {
         /*Item item = new Item(form.getId(), form.getItemName(), form.getPrice(), form.getStockQuantity(),
                 form.getShop(), form.getImageFiles());*/
         Item item = itemService.findById(itemId);
-        item.setShopName(form.getShop());
+        item.setShop(form.getShop());
         item.setItemName(form.getItemName());
         item.setPrice(form.getPrice());
         item.setStockQuantity(form.getStockQuantity());
