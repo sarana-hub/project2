@@ -47,7 +47,10 @@ public class OrderService {
         Order order = Order.createOrder(customer, delivery, orderItem);
 
         orderRepository.save(order);
-        sendSMS(customer.getPhone());
+        for(int i=0; i<count; i++){
+            sendSMS(customer.getPhone());
+        }
+
     }
 
     @Transactional
@@ -62,7 +65,10 @@ public class OrderService {
         Order order = Order.createOrder(customer, delivery, orderItem);
 
         orderRepository.save(order);
-        giftSMS(phone, msg);
+
+        for(int i=0; i<count; i++){
+            giftSMS(phone, msg);
+        }
     }
 
 
@@ -70,7 +76,7 @@ public class OrderService {
     //주문시
     private void sendSMS(String hp) throws IOException {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSDGB", "K4KPKLGRZHQ", "https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSDGB", "K4KPKLGRZHQ8SOCC", "https://api.coolsms.co.kr");
 
         ClassPathResource resource = new ClassPathResource("static/cti.jpg");
         File file = resource.getFile();
@@ -88,7 +94,7 @@ public class OrderService {
     //선물시
     private void giftSMS(String hp, String text) throws IOException {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSDGBJ", "K4KPKLGRZHQ8SOC", "https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSDGBJ", "K4KPKLGRZHQ8S", "https://api.coolsms.co.kr");
 
         ClassPathResource resource = new ClassPathResource("static/sample.jpg");
         File file = resource.getFile();
