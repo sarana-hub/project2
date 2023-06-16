@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @Slf4j
@@ -34,6 +35,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
     private final ItemRepository itemRepository;
+
 
     @Transactional
     public void createOrder(Long itemId, Long customerId, int count) throws IOException {
@@ -71,12 +73,22 @@ public class OrderService {
         }
     }
 
+    //쿠폰번호 생성
+    public static String createKey() {
+        StringBuffer key = new StringBuffer();
+        Random rnd = new Random();
+
+        for (int i = 0; i < 12; i++) { //쿠폰번호 12자리
+            key.append((rnd.nextInt(10)));
+        }
+        return key.toString();
+    }
 
 
     //주문시
     private void sendSMS(String hp) throws IOException {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSDGBJ", "K4KPKLGRZHQ8SOCC", "https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSDGBJU", "K4KPKLGRZHQ8SOC", "https://api.coolsms.co.kr");
 
         ClassPathResource resource = new ClassPathResource("static/cti.jpg");
         File file = resource.getFile();
@@ -86,7 +98,7 @@ public class OrderService {
         // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
         message.setFrom("01051049674");
         message.setTo(hp);
-        message.setText("쿠폰 발송");
+        message.setText("쿠폰번호: "+createKey());
         message.setImageId(imageId);
 
         SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
@@ -94,7 +106,7 @@ public class OrderService {
     //선물시
     private void giftSMS(String hp, String text) throws IOException {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSDGB", "K4KPKLGRZHQ", "https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSDGBJ", "K4KPKLGRZHQ8S", "https://api.coolsms.co.kr");
 
         ClassPathResource resource = new ClassPathResource("static/sample.jpg");
         File file = resource.getFile();
@@ -104,7 +116,7 @@ public class OrderService {
         // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
         message.setFrom("01051049674");
         message.setTo(hp);
-        message.setText(text);
+        message.setText("쿠폰번호: "+createKey()+"\n"+text);
         message.setImageId(imageId);
 
         SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
