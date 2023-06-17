@@ -36,7 +36,7 @@ public class InitDb {
             String name1 = "점주다";
             String password = "0000";
             AccessRole role = AccessRole.OWNER;
-            Address address = new Address("서울시 성북구", "성북로5길", 15);
+            Address address = new Address("서울시 성북구 성북로5길", null,null, 07515);
 
             Shop shop=new Shop("메종드민서쓰", "경기 용인시 처인구 금학로 121");
             em.persist(shop);
@@ -50,7 +50,7 @@ public class InitDb {
             String name2 = "김유저";
             String password2 = "1111";
             AccessRole role2 = AccessRole.USER;
-            Address address2 = new Address("서울시 강서구", "공항대로", 11);
+            Address address2 = new Address("서울시 강서구 공항대로 11", null, null, 01210);
 
             Customer customer2 = new Customer(loginId2, password2, name2, "01051049674", role2, address2);
             em.persist(customer2);
@@ -59,7 +59,7 @@ public class InitDb {
             String name3 = "나유저";
             String password3 = "2222";
             AccessRole role3 = AccessRole.USER;
-            Address address3 = new Address("서울시 양천구", "신월로", 375);
+            Address address3 = new Address("서울시 양천구 신월로 375", null, null, 01375);
 
             Customer customer3 = new Customer(loginId3, password3, name3, "01034345656", role3, address3);
             em.persist(customer3);

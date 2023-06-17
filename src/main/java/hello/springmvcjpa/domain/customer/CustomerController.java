@@ -42,7 +42,7 @@ public class CustomerController {
             return "member/addForm";
         }
 
-        Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
+        Address address = new Address(form.getCity(), form.getDetailAddress(), form.getStreet(), form.getZipcode());
         Customer customer = new Customer(form.getLoginId(),form.getPassword(), form.getName(), form.getPhone(), form.getRole(), address);
         customerService.save(customer);
 

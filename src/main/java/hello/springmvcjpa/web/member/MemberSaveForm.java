@@ -38,7 +38,9 @@ public class MemberSaveForm {
     /*Address*/
     @NotEmpty
     private String city;
-    @NotEmpty
+    //@NotEmpty
+    private String detailAddress;
+    //@NotEmpty
     private String street;
     @NotNull
     private Integer zipcode;
