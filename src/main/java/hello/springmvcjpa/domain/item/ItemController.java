@@ -34,7 +34,7 @@ public class ItemController {
     private final FileStore fileStore;
 
     /**
-     * 아이템 전1`체 조회 -상품 목록
+     * 아이템 전체 조회 -상품 목록
      */
     @GetMapping("/items")
     public String items(Model model) {
