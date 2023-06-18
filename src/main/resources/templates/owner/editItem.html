@@ -30,9 +30,10 @@
     </div>
 
     <ul>
+
         <div>
-            <label th:for="*{id}" th:text="#{label.item.id}">상품 ID</label>
-            <input type="text" th:field="*{id}" class="form-control" readonly>
+            <!--<label th:for="*{id}" th:text="#{label.item.id}">상품 ID</label>-->
+            <input type="hidden" th:field="*{id}" class="form-control" readonly>
         </div>
 
         <div>

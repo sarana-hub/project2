@@ -38,7 +38,7 @@
         <div class="col">
             <form action="/members/address/editForm" method="post">
                 <input class="form-control" type="hidden" name="city" th:value="${customer.address.city}">
-                <input class="form-control" type="hidden" name="zipcode" th:value="${customer.address.detailAddress}">
+                <input class="form-control" type="hidden" name="detailAddress" th:value="${customer.address.detailAddress}">
                 <input class="form-control" type="hidden" name="street" th:value="${customer.address.street}">
                 <input class="form-control" type="hidden" name="zipcode" th:value="${customer.address.zipcode}">
                 <button type="submit">주소 수정</button>

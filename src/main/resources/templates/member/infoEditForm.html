@@ -16,7 +16,7 @@
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
     <div class="py-5 text-center">
-        <h1>Edit</h1>
+        <h1>Address Edit</h1>
     </div>
 
     <form th:action="@{/members/address/edit}" th:object="${address}" method="post">
@@ -25,34 +25,42 @@
         </div>
 
         <ul>
-            <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
             <div>
-                <label th:for="*{city}">주소</label>
-                <input class="form-control" type="text" th:field="*{city}" th:errorclass="field-error">
-                <div th:errors="*{city}" class="field-error">주소명 오류</div>
-            </div>
-            <div>
-                <label th:for="*{detailAddress}">상세주소</label>
-                <input type="text" id="detailAddress" th:field="*{detailAddress}" placeholder="상세주소" class="form-control">
-            </div>
-            <div>
-                <label th:for="*{street}">참고항목</label>
-                <input class="form-control" type="text" th:field="*{street}" th:errorclass="field-error">
-                <div th:errors="*{street}" class="field-error">참고항목 오류</div>
-            </div>
-            <div>
-                <label th:for="*{zipcode}">우편번호</label>
-                <input class="form-control" type="text" th:field="*{zipcode}" th:errorclass="field-error">
-                <div th:errors="*{zipcode}" class="field-error">우편번호 오류</div>
-            </div>
 
-            <div class="col">
-                <button class="w-100 btn btn-primary btn-lg" type="submit" th:text="#{button.update}">수정</button>
+            <label for="address">Address</label>
+            <div id="address">
+                <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+
+                <div>
+                    <label th:for="*{city}">주소</label>
+                    <input class="form-control" type="text" th:field="*{city}" th:errorclass="field-error">
+                    <div th:errors="*{city}" class="field-error">주소명 오류</div>
+                </div>
+                <div>
+                    <label th:for="*{detailAddress}">상세주소</label>
+                    <input type="text" id="detailAddress" th:field="*{detailAddress}" placeholder="상세주소" class="form-control">
+                </div>
+                <div>
+                    <label th:for="*{street}">참고항목</label>
+                    <input class="form-control" type="text" th:field="*{street}" th:errorclass="field-error">
+                    <div th:errors="*{street}" class="field-error">참고항목 오류</div>
+                </div>
+                <div>
+                    <label th:for="*{zipcode}">우편번호</label>
+                    <input class="form-control" type="text" th:field="*{zipcode}" th:errorclass="field-error">
+                    <div th:errors="*{zipcode}" class="field-error">우편번호 오류</div>
+                </div>
             </div>
+        </div>
         </ul>
 
-    </form>
+        <hr class="my-4">
 
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg" type="submit" th:text="#{button.update}">수정</button>
+        </div>
+
+    </form>
     <div th:replace="fragments/footer :: footer"/>
 </div>
 

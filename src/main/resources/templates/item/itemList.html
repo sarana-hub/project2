@@ -21,7 +21,7 @@
             <tr>
                 <th th:text="#{label.item.imageFiles}">이미지</th>
                 <th th:text="#{label.item.shop}">매장명</th>
-                <th th:text="#{label.item.id}">Id</th>
+                <!--<th th:text="#{label.item.id}">Id</th>-->
                 <th th:text="#{label.item.itemName}">Name</th>
                 <th th:text="#{label.item.price}">Price</th>
                 <th th:text="#{label.item.quantity}">Stock_Quantity</th>
@@ -34,8 +34,8 @@
                          width="100" height="100"/>
                 </td>
                 <td th:text="${item.shop}">매장명</a></td>
-                <td><a href="item.html" th:href="@{|/items/${item.id}|}"  th:text="${item.id}">item id</a></td>
-                <td th:text="${item.itemName}">item name</td>
+                <!--<td><a href="item.html" th:href="@{|/items/${item.id}|}" th:text="${item.id}">itemid</a></td>-->
+                <td><a href="item.html" th:href="@{|/items/${item.id}|}"th:text="${item.itemName}">item name</a></td>
                 <td th:text="|${{item.price}} 원|">item price</td>
                 <td th:text="|${{item.stockQuantity}} 개|">item stock quantity</td>
             </tr>

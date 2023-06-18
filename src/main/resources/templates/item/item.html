@@ -29,9 +29,10 @@
         <p th:text="|매장 명 : ${item.shop}|">item shop</p>
     </div>
 
+    <!--
     <div>
         <p th:text="|아이템 ID : ${item.id}|">item id</p>
-    </div>
+    </div>-->
     <div>
         <p th:text="|아이템 명 : ${item.itemName}|">item name</p>
     </div>
@@ -64,10 +65,10 @@
                 <input type="number" id="cnt" name="cnt" class="form-control">
 
                 <label for="phone">전화번호 : </label>
-                <input type="tel" id="phone" name="phone" class="form-control" pattern="[0-9]{3}[0-9]{4}[0-9]{4}">
+                <input type="tel" id="phone" name="phone" class="form-control" pattern="[0-9]{3}[0-9]{4}[0-9]{4}" placeholder="전화번호를 입력해주세요.">
 
                 <label for="msg">메시지 : </label>
-                <input type="text" id="msg" name="msg" class="form-control">
+                <input type="text" id="msg" name="msg" class="form-control" placeholder="쿠폰과 함께 보내실 메시지를 입력해주세요.">
                 <button class="w-10 btn btn-secondary btn-lg" type="submit">선물하기</button>
             </form>
         </div>
