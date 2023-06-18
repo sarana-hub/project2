@@ -32,7 +32,7 @@ public class InitDb {
 
         public void dbInit1() {
 
-            String loginId = "ww";
+            /*String loginId = "ww";
             String name1 = "점주다";
             String password = "0000";
             AccessRole role = AccessRole.OWNER;
@@ -40,11 +40,11 @@ public class InitDb {
 
             Shop shop=new Shop("메종드민서쓰", "경기 용인시 처인구 금학로 121");
             em.persist(shop);
-            /*Pos pos=new Pos("cityyy", "streeeet", 1201);
-            Shop shop=new Shop("cafe", pos);*/
+            //Pos pos=new Pos("cityyy", "streeeet", 1201);
+            //Shop shop=new Shop("cafe", pos);
 
             Customer customer=new Customer(loginId, password, name1, "01012345678", role, address);
-            em.persist(customer);
+            em.persist(customer);*/
 
             String loginId2 = "user";
             String name2 = "김유저";
@@ -61,7 +61,7 @@ public class InitDb {
             AccessRole role3 = AccessRole.USER;
             Address address3 = new Address("서울시 양천구 신월로 375", null, null, 01375);
 
-            Customer customer3 = new Customer(loginId3, password3, name3, "01034345656", role3, address3);
+            Customer customer3 = new Customer(loginId3, password3, name3, "01047079674", role3, address3);
             em.persist(customer3);
 
             /*
