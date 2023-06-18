@@ -44,12 +44,12 @@ public class OwnerController {
 
 
     //owner 회원 주소 수정
-    @PostMapping("/owner/info/address/editForm")
+    @PostMapping("/owner/address/editForm")
     public String editForm(Address address, Model model) {
         model.addAttribute("address", address);
         return "owner/infoEditForm";
     }
-    @PostMapping("/owner/info/address/edit")
+    @PostMapping("/owner/address/edit")
     public String edit(Address address, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long customerId = (Long) session.getAttribute(SessionConst.LOGIN_CUSTOMER);
@@ -58,5 +58,4 @@ public class OwnerController {
 
         return "redirect:/owner/info";
     }
-
 }
