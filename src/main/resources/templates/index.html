@@ -22,7 +22,36 @@
             <button class="w-100 btn btn-secondary btn-lg" type="button" onclick="location.href='/members/add'">회원가입 페이지</button>
         </div>
     </div>
+
     <hr class="my-4">
+    <!--
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{label.item.imageFiles}">이미지</th>
+                <th th:text="#{label.item.shop}">매장명</th>
+                <th th:text="#{label.item.itemName}">Name</th>
+                <th th:text="#{label.item.price}">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${items}">
+                <td>
+                    <img th:each="imageFile : ${item.imageFiles}" th:src="|/images/${imageFile.getStoreFileName()}|"
+                         width="100" height="100"/>
+                </td>
+                <td th:text="${item.shop}">매장명</a></td>
+                <td th:text="${item.itemName}">item name</td>
+                <td th:text="|${{item.price}} 원|">item price</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <hr class="my-4">-->
+
+    <div th:replace="fragments/footer :: footer"/>
 </div>
 </body>
 </html>

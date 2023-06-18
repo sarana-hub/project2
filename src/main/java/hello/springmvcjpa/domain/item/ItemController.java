@@ -34,7 +34,7 @@ public class ItemController {
     private final FileStore fileStore;
 
     /**
-     * 아이템 전체 조회 -상품 목록
+     * 아이템 전1`체 조회 -상품 목록
      */
     @GetMapping("/items")
     public String items(Model model) {
@@ -81,6 +81,23 @@ public class ItemController {
         model.addAttribute("items", forms);
         return "owner/itemList";
     }
+
+    /*아이템 전체 조회
+    @GetMapping()
+    public String Items(Model model) {
+
+        List<Item> items = itemService.findAll();
+        List<ItemForm> forms = new ArrayList<>();
+
+        for (Item item : items) {
+            ItemForm form = new ItemForm(item.getId(), item.getItemName(), item.getPrice(), item.getStockQuantity(),
+                    item.getShop(), item.getImageFiles());
+            forms.add(form);
+        }
+
+        model.addAttribute("items", forms);
+        return "index";
+    }*/
 
 
 
