@@ -32,7 +32,7 @@ public class InitDb {
 
         public void dbInit1() {
 
-            /*String loginId = "ww";
+            String loginId = "ww";
             String name1 = "점주다";
             String password = "0000";
             AccessRole role = AccessRole.OWNER;
@@ -44,7 +44,7 @@ public class InitDb {
             //Shop shop=new Shop("cafe", pos);
 
             Customer customer=new Customer(loginId, password, name1, "01012345678", role, address);
-            em.persist(customer);*/
+            em.persist(customer);
 
             String loginId2 = "user";
             String name2 = "김유저";
