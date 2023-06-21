@@ -50,7 +50,7 @@ public class OrderService {
 
         orderRepository.save(order);
         for(int i=0; i<count; i++){
-            sendSMS(customer.getPhone(), item.getItemName());
+            sendSMS(customer.getPhone(), item.getItemName(), item.getShop());
         }
 
     }
@@ -69,7 +69,7 @@ public class OrderService {
         orderRepository.save(order);
 
         for(int i=0; i<count; i++){
-            giftSMS(phone, msg, item.getItemName());
+            giftSMS(phone, msg, item.getItemName(), item.getShop());
         }
     }
 
@@ -86,9 +86,9 @@ public class OrderService {
 
 
     //주문시
-    private void sendSMS(String hp, String item) throws IOException {
+    private void sendSMS(String hp, String item, String shop) throws IOException {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSYJ", "GHZGZHMY6VLE","https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSYJZG", "GHZGZHMY6","https://api.coolsms.co.kr");
 
         ClassPathResource resource = new ClassPathResource("static/cti.jpg");
         File file = resource.getFile();
@@ -98,15 +98,15 @@ public class OrderService {
         // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
         message.setFrom("01051049674");
         message.setTo(hp);
-        message.setText("*상품명칭: "+item+"\n*쿠폰번호: "+createKey());
+        message.setText("*상품명칭: "+item+"\n*교환처: "+shop+"\n*쿠폰번호: "+createKey());
         //message.setImageId(imageId);
 
         SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));
     }
     //선물시
-    private void giftSMS(String hp, String text, String item) throws IOException {
+    private void giftSMS(String hp, String text, String item, String shop) throws IOException {
         final DefaultMessageService messageService =
-                NurigoApp.INSTANCE.initialize("NCSYJZ", "GHZGZHMY6","https://api.coolsms.co.kr");
+                NurigoApp.INSTANCE.initialize("NCSYJZGE", "GHZGZHMY6VL","https://api.coolsms.co.kr");
 
         ClassPathResource resource = new ClassPathResource("static/sample.jpg");
         File file = resource.getFile();
@@ -116,7 +116,7 @@ public class OrderService {
         // 발신번호 및 수신번호는 반드시 01012345678 형태로 입력되어야 합니다.
         message.setFrom("01051049674");
         message.setTo(hp);
-        message.setText("*상품명칭: "+item+"\n*쿠폰번호: "+createKey()+"\n"+text);
+        message.setText("*상품명칭: "+item+"\n*교환처: "+shop+"\n*쿠폰번호: "+createKey()+"\n"+text);
         //message.setImageId(imageId);
 
         SingleMessageSentResponse response = messageService.sendOne(new SingleMessageSendingRequest(message));

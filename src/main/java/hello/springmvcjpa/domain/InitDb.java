@@ -19,8 +19,6 @@ public class InitDb {
     @PostConstruct
     public void init() {
         initService.dbInit1();
-//        initService.dbInit2();
-
     }
 
     @Component
@@ -32,7 +30,7 @@ public class InitDb {
 
         public void dbInit1() {
 
-            /*String loginId = "ww";
+            String loginId = "ww";
             String name1 = "점주다";
             String password = "0000";
             AccessRole role = AccessRole.OWNER;
@@ -44,16 +42,16 @@ public class InitDb {
             //Shop shop=new Shop("cafe", pos);
 
             Customer customer=new Customer(loginId, password, name1, "01012345678", role, address);
-            em.persist(customer);*/
+            em.persist(customer);
 
-            /*String loginId2 = "user";
+            String loginId2 = "user";
             String name2 = "김유저";
             String password2 = "1111";
             AccessRole role2 = AccessRole.USER;
             Address address2 = new Address("서울시 강서구 공항대로 11", null, null, 01210);
 
             Customer customer2 = new Customer(loginId2, password2, name2, "01051049674", role2, address2);
-            em.persist(customer2);*/
+            em.persist(customer2);
 
             String loginId3 = "ss";
             String name3 = "나유저";
