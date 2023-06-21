@@ -32,7 +32,7 @@ public class InitDb {
 
         public void dbInit1() {
 
-            String loginId = "ww";
+            /*String loginId = "ww";
             String name1 = "점주다";
             String password = "0000";
             AccessRole role = AccessRole.OWNER;
@@ -44,16 +44,16 @@ public class InitDb {
             //Shop shop=new Shop("cafe", pos);
 
             Customer customer=new Customer(loginId, password, name1, "01012345678", role, address);
-            em.persist(customer);
+            em.persist(customer);*/
 
-            String loginId2 = "user";
+            /*String loginId2 = "user";
             String name2 = "김유저";
             String password2 = "1111";
             AccessRole role2 = AccessRole.USER;
             Address address2 = new Address("서울시 강서구 공항대로 11", null, null, 01210);
 
             Customer customer2 = new Customer(loginId2, password2, name2, "01051049674", role2, address2);
-            em.persist(customer2);
+            em.persist(customer2);*/
 
             String loginId3 = "ss";
             String name3 = "나유저";
@@ -64,30 +64,7 @@ public class InitDb {
             Customer customer3 = new Customer(loginId3, password3, name3, "01047079674", role3, address3);
             em.persist(customer3);
 
-            /*
-            String name = "item_1";
-            int price = 1000000;
-            int stockQuantity = 100;
-            String shop2="bhc";
-            //Shop shop2=new Shop("bhc", "경기", null);
-
-            Item item = new Item(name, price, stockQuantity, shop2, null);
-
-            em.persist(item);*/
         }
 
-        /*
-        public void dbInit2() {
-
-            String name = "item_2";
-            int price = 20000;
-            int stockQuantity = 10;
-            String shop3="bing";
-            //Shop shop3=new Shop("king", "인천", null);
-
-            Item item = new Item(name, price, stockQuantity, shop3, null);
-
-            em.persist(item);
-        }*/
     }
 }
